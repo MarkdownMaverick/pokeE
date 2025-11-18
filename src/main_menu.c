@@ -478,7 +478,7 @@ static const struct MenuAction sMenuActions_Gender[] = {
 };
 
 static const u8 *const sMalePresetNames[] = {
-    COMPOUND_STRING("STU"),
+    COMPOUND_STRING("KAI"),
     COMPOUND_STRING("MILTON"),
     COMPOUND_STRING("TOM"),
     COMPOUND_STRING("KENNY"),
@@ -1286,7 +1286,6 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
-    InitBgFromTemplate(&sBirchBgTemplate);
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
     SetGpuReg(REG_OFFSET_WININ, 0);
@@ -1294,11 +1293,6 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
     SetGpuReg(REG_OFFSET_BLDALPHA, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
-
-    DecompressDataWithHeaderVram(sBirchSpeechShadowGfx, (void *)VRAM);
-    DecompressDataWithHeaderVram(sBirchSpeechBgMap, (void *)(BG_SCREEN_ADDR(7)));
-    LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
-    LoadPalette(&sBirchSpeechBgGradientPal[8], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
@@ -1306,14 +1300,17 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     AddBirchSpeechObjects(taskId);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     gTasks[taskId].tBG1HOFS = 0;
-    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
+    gSaveBlock2Ptr->playerGender = 0;
+    NewGameBirchSpeech_SetDefaultPlayerName(0);
+
+    gTasks[taskId].func = Task_NewGameBirchSpeech_FadePlayerToWhite;
     gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
     gTasks[taskId].data[3] = 0xFF;
-    gTasks[taskId].tTimer = 0xD8;
-    PlayBGM(MUS_ROUTE122);
+    gTasks[taskId].tTimer = 0x0;
     ShowBg(0);
     ShowBg(1);
 }
+
 
 static void Task_NewGameBirchSpeech_WaitToShowBirch(u8 taskId)
 {
@@ -2125,16 +2122,8 @@ static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)
 
 void NewGameBirchSpeech_SetDefaultPlayerName(u8 nameId)
 {
-    const u8 *name;
-    u8 i;
-
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        name = sMalePresetNames[nameId];
-    else
-        name = sFemalePresetNames[nameId];
-    for (i = 0; i < PLAYER_NAME_LENGTH; i++)
-        gSaveBlock2Ptr->playerName[i] = name[i];
-    gSaveBlock2Ptr->playerName[PLAYER_NAME_LENGTH] = EOS;
+    // Verdant Vice – Kai is always the protagonist, no questions asked
+    StringCopy(gSaveBlock2Ptr->playerName, COMPOUND_STRING("KAI"));
 }
 
 static void CreateMainMenuErrorWindow(const u8 *str)
