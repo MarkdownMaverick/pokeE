@@ -1,0 +1,39 @@
+raw `
+AA_DOCKS_MapScripts::
+	.byte 0
+
+
+
+
+`
+// THIS SETS UP THE LITTLEROOT TOWN INTRO FOR TESTING PURPOSES
+script debugachu {
+    lockall
+    if (flag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM)) {
+        msgbox ("READY TO WARP" MSGBOX_NPC)
+        releaseall
+        end
+    } else {
+        setrespawn(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F)
+        setvar(VAR_LITTLEROOT_INTRO_STATE, 1)
+        setflag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM)
+        setflag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM)
+        setflag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING)
+	    setflag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL)
+        setvar(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1)
+        msgbox("ALL SET" MSGBOX_NPC)
+        releaseall
+        end}
+}
+// THIS WARPS TO LITTLEROOT TOWN FROM AA DOCKS FOR TESTING PURPOSES
+// PLAYER CAN WARP IN TWO DIFFERENT STATES DEPENDING ON IF debugachu HAS BEEN TRIGGERED BEFORE
+script debugachuwarp {
+
+    lockall
+    setdynamicwarp(MAP_LITTLEROOT_TOWN, 3, 10)
+    warp(MAP_LITTLEROOT_TOWN, 3, 10)
+    releaseall
+    end
+    
+}
+  

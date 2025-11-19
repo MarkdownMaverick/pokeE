@@ -25,7 +25,7 @@ InsideOfTruck_OnLoad:
 # 13 "data/maps/InsideOfTruck/scripts.pory"
 InsideOfTruck_OnResume:
 # 14 "data/maps/InsideOfTruck/scripts.pory"
-	setstepcallback STEP_CB_TRUCK
+	setstepcallback STEP_CB_DOCKS
 # 15 "data/maps/InsideOfTruck/scripts.pory"
 	end
 # 16 "data/maps/InsideOfTruck/scripts.pory"
@@ -49,68 +49,52 @@ InsideOfTruck_EventScript_SetIntroFlags::
 # 25 "data/maps/InsideOfTruck/scripts.pory"
 InsideOfTruck_EventScript_SetIntroFlagsMale::
 # 26 "data/maps/InsideOfTruck/scripts.pory"
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
+
 # 27 "data/maps/InsideOfTruck/scripts.pory"
-	setvar VAR_LITTLEROOT_INTRO_STATE, 1
+	releaseall
 # 28 "data/maps/InsideOfTruck/scripts.pory"
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+	end
 # 29 "data/maps/InsideOfTruck/scripts.pory"
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
+
 # 30 "data/maps/InsideOfTruck/scripts.pory"
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
-# 31 "data/maps/InsideOfTruck/scripts.pory"
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
-# 32 "data/maps/InsideOfTruck/scripts.pory"
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
-# 33 "data/maps/InsideOfTruck/scripts.pory"
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1
-# 34 "data/maps/InsideOfTruck/scripts.pory"
-	setdynamicwarp MAP_LITTLEROOT_TOWN, 3, 10
-# 35 "data/maps/InsideOfTruck/scripts.pory"
-	releaseall
-# 36 "data/maps/InsideOfTruck/scripts.pory"
-	end
-# 37 "data/maps/InsideOfTruck/scripts.pory"
-
-# 38 "data/maps/InsideOfTruck/scripts.pory"
 InsideOfTruck_EventScript_SetIntroFlagsFemale::
-# 39 "data/maps/InsideOfTruck/scripts.pory"
+# 31 "data/maps/InsideOfTruck/scripts.pory"
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
-# 40 "data/maps/InsideOfTruck/scripts.pory"
+# 32 "data/maps/InsideOfTruck/scripts.pory"
 	setvar VAR_LITTLEROOT_INTRO_STATE, 2
-# 41 "data/maps/InsideOfTruck/scripts.pory"
+# 33 "data/maps/InsideOfTruck/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
-# 42 "data/maps/InsideOfTruck/scripts.pory"
+# 34 "data/maps/InsideOfTruck/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
-# 43 "data/maps/InsideOfTruck/scripts.pory"
+# 35 "data/maps/InsideOfTruck/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
-# 44 "data/maps/InsideOfTruck/scripts.pory"
+# 36 "data/maps/InsideOfTruck/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
-# 45 "data/maps/InsideOfTruck/scripts.pory"
+# 37 "data/maps/InsideOfTruck/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
-# 46 "data/maps/InsideOfTruck/scripts.pory"
+# 38 "data/maps/InsideOfTruck/scripts.pory"
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 1
-# 47 "data/maps/InsideOfTruck/scripts.pory"
+# 39 "data/maps/InsideOfTruck/scripts.pory"
 	setdynamicwarp MAP_LITTLEROOT_TOWN, 12, 10
-# 48 "data/maps/InsideOfTruck/scripts.pory"
+# 40 "data/maps/InsideOfTruck/scripts.pory"
 	releaseall
-# 49 "data/maps/InsideOfTruck/scripts.pory"
+# 41 "data/maps/InsideOfTruck/scripts.pory"
 	end
-# 50 "data/maps/InsideOfTruck/scripts.pory"
+# 42 "data/maps/InsideOfTruck/scripts.pory"
 
-# 51 "data/maps/InsideOfTruck/scripts.pory"
+# 43 "data/maps/InsideOfTruck/scripts.pory"
 InsideOfTruck_EventScript_MovingBox::
-# 52 "data/maps/InsideOfTruck/scripts.pory"
+# 44 "data/maps/InsideOfTruck/scripts.pory"
 	msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo, MSGBOX_SIGN
-# 53 "data/maps/InsideOfTruck/scripts.pory"
+# 45 "data/maps/InsideOfTruck/scripts.pory"
 	end
-# 54 "data/maps/InsideOfTruck/scripts.pory"
+# 46 "data/maps/InsideOfTruck/scripts.pory"
 
-# 55 "data/maps/InsideOfTruck/scripts.pory"
+# 47 "data/maps/InsideOfTruck/scripts.pory"
 InsideOfTruck_Text_BoxPrintedWithMonLogo:
-# 56 "data/maps/InsideOfTruck/scripts.pory"
+# 48 "data/maps/InsideOfTruck/scripts.pory"
 	.string "The box is printed with a POKéMON logo.\p"
-# 57 "data/maps/InsideOfTruck/scripts.pory"
+# 49 "data/maps/InsideOfTruck/scripts.pory"
 	.string "It's a POKéMON brand moving and\n"
-# 58 "data/maps/InsideOfTruck/scripts.pory"
+# 50 "data/maps/InsideOfTruck/scripts.pory"
 	.string "delivery service.$"
