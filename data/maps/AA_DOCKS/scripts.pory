@@ -1,10 +1,7 @@
 raw `
 AA_DOCKS_MapScripts::
 	.byte 0
-
-
-
-
+    
 `
 // THIS SETS UP THE LITTLEROOT TOWN INTRO FOR TESTING PURPOSES
 script debugachu {
@@ -40,12 +37,4 @@ script debugachuwarp {
     end
     
 }
-  
-// --- IN GAME REPUTATION SYSTEM SCRIPT ---
-script reputation_test {
-    lockall
-    addreputation(10)
-    msgbox("REPUTATION INCREASED BY 10!" MSGBOX_NPC)
-    releasall
-    end
-}
+// END OF TESTING SCRIPTS
