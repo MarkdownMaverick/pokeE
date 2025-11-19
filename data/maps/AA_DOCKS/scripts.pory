@@ -28,12 +28,24 @@ script debugachu {
 // THIS WARPS TO LITTLEROOT TOWN FROM AA DOCKS FOR TESTING PURPOSES
 // PLAYER CAN WARP IN TWO DIFFERENT STATES DEPENDING ON IF debugachu HAS BEEN TRIGGERED BEFORE
 script debugachuwarp {
-
     lockall
-    setdynamicwarp(MAP_LITTLEROOT_TOWN, 3, 10)
-    warp(MAP_LITTLEROOT_TOWN, 3, 10)
+    if (var(VAR_LITTLEROOT_INTRO_STATE) == 1) {
+        warp(MAP_LITTLEROOT_TOWN, 3, 10)
+        releaseall
+        end
+    }
+    lockall
+    warp(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, 1, 4)
     releaseall
     end
     
 }
   
+// --- IN GAME REPUTATION SYSTEM SCRIPT ---
+script reputation_test {
+    lockall
+    addreputation(10)
+    msgbox("REPUTATION INCREASED BY 10!" MSGBOX_NPC)
+    releasall
+    end
+}

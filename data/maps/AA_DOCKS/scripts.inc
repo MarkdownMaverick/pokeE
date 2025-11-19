@@ -39,13 +39,23 @@ debugachu_1:
 
 
 debugachuwarp::
-# 32 "data/maps/AA_DOCKS/scripts.pory"
+# 31 "data/maps/AA_DOCKS/scripts.pory"
 	lockall
+# 32 "data/maps/AA_DOCKS/scripts.pory"
+	compare VAR_LITTLEROOT_INTRO_STATE, 1
+	goto_if_eq debugachuwarp_2
+# 37 "data/maps/AA_DOCKS/scripts.pory"
+	lockall
+# 38 "data/maps/AA_DOCKS/scripts.pory"
+	warp MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, 1, 4
+# 39 "data/maps/AA_DOCKS/scripts.pory"
+	releaseall
+	end
+
+debugachuwarp_2:
 # 33 "data/maps/AA_DOCKS/scripts.pory"
-	setdynamicwarp MAP_LITTLEROOT_TOWN, 3, 10
-# 34 "data/maps/AA_DOCKS/scripts.pory"
 	warp MAP_LITTLEROOT_TOWN, 3, 10
-# 35 "data/maps/AA_DOCKS/scripts.pory"
+# 34 "data/maps/AA_DOCKS/scripts.pory"
 	releaseall
 	end
 
