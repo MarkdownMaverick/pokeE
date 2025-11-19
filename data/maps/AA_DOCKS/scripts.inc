@@ -6,64 +6,64 @@ AA_DOCKS_MapScripts::
 	.byte 0
 
 debugachu::
-# 11 "data/maps/AA_DOCKS/scripts.pory"
+# 8 "data/maps/AA_DOCKS/scripts.pory"
 	lockall
-# 12 "data/maps/AA_DOCKS/scripts.pory"
+# 9 "data/maps/AA_DOCKS/scripts.pory"
 	goto_if_set FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM, debugachu_1
-# 17 "data/maps/AA_DOCKS/scripts.pory"
+# 14 "data/maps/AA_DOCKS/scripts.pory"
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
-# 18 "data/maps/AA_DOCKS/scripts.pory"
+# 15 "data/maps/AA_DOCKS/scripts.pory"
 	setvar VAR_LITTLEROOT_INTRO_STATE, 1
-# 19 "data/maps/AA_DOCKS/scripts.pory"
+# 16 "data/maps/AA_DOCKS/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
-# 20 "data/maps/AA_DOCKS/scripts.pory"
+# 17 "data/maps/AA_DOCKS/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
-# 21 "data/maps/AA_DOCKS/scripts.pory"
+# 18 "data/maps/AA_DOCKS/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
-# 22 "data/maps/AA_DOCKS/scripts.pory"
+# 19 "data/maps/AA_DOCKS/scripts.pory"
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
-# 23 "data/maps/AA_DOCKS/scripts.pory"
+# 20 "data/maps/AA_DOCKS/scripts.pory"
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1
-# 24 "data/maps/AA_DOCKS/scripts.pory"
+# 21 "data/maps/AA_DOCKS/scripts.pory"
 	msgbox debugachu_Text_1
-# 25 "data/maps/AA_DOCKS/scripts.pory"
+# 22 "data/maps/AA_DOCKS/scripts.pory"
 	releaseall
 	end
 
 debugachu_1:
-# 13 "data/maps/AA_DOCKS/scripts.pory"
+# 10 "data/maps/AA_DOCKS/scripts.pory"
 	msgbox debugachu_Text_0
-# 14 "data/maps/AA_DOCKS/scripts.pory"
+# 11 "data/maps/AA_DOCKS/scripts.pory"
 	releaseall
 	end
 
 
 debugachuwarp::
-# 31 "data/maps/AA_DOCKS/scripts.pory"
+# 28 "data/maps/AA_DOCKS/scripts.pory"
 	lockall
-# 32 "data/maps/AA_DOCKS/scripts.pory"
+# 29 "data/maps/AA_DOCKS/scripts.pory"
 	compare VAR_LITTLEROOT_INTRO_STATE, 1
 	goto_if_eq debugachuwarp_2
-# 37 "data/maps/AA_DOCKS/scripts.pory"
+# 34 "data/maps/AA_DOCKS/scripts.pory"
 	lockall
-# 38 "data/maps/AA_DOCKS/scripts.pory"
+# 35 "data/maps/AA_DOCKS/scripts.pory"
 	warp MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, 1, 4
-# 39 "data/maps/AA_DOCKS/scripts.pory"
+# 36 "data/maps/AA_DOCKS/scripts.pory"
 	releaseall
 	end
 
 debugachuwarp_2:
-# 33 "data/maps/AA_DOCKS/scripts.pory"
+# 30 "data/maps/AA_DOCKS/scripts.pory"
 	warp MAP_LITTLEROOT_TOWN, 3, 10
-# 34 "data/maps/AA_DOCKS/scripts.pory"
+# 31 "data/maps/AA_DOCKS/scripts.pory"
 	releaseall
 	end
 
 
 debugachu_Text_0:
-# 13 "data/maps/AA_DOCKS/scripts.pory"
+# 10 "data/maps/AA_DOCKS/scripts.pory"
 	.string "READY TO WARP$"
 
 debugachu_Text_1:
-# 24 "data/maps/AA_DOCKS/scripts.pory"
+# 21 "data/maps/AA_DOCKS/scripts.pory"
 	.string "ALL SET$"
