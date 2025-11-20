@@ -119,7 +119,7 @@ EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 # 60 "data/maps/EverGrandeCity_HallOfFame/scripts.pory"
 EverGrandeCity_HallOfFame_EventScript_GameClearFemale::
 # 61 "data/maps/EverGrandeCity_HallOfFame/scripts.pory"
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
 # 62 "data/maps/EverGrandeCity_HallOfFame/scripts.pory"
 	fadescreenspeed FADE_TO_BLACK, 24
 # 63 "data/maps/EverGrandeCity_HallOfFame/scripts.pory"

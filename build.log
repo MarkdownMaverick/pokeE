@@ -1,0 +1,973 @@
+main.c: In function ‘main’:
+main.c:650:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  650 |         for (int i = 0; i < newOutputPathSize; i++)
+      |                           ^
+huff.c: In function ‘msort_r’:
+huff.c:68:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   68 |         } while (++i < count && leftPtr < leftEnd && rightPtr < rightEnd);
+      |                      ^
+huff.c:71:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   71 |         if (i < count) {
+      |               ^
+main.c: In function ‘fprint_trainers’:
+main.c:1741:41: warning: unused parameter ‘output_path’ [-Wunused-parameter]
+ 1741 | static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
+      |                             ~~~~~~~~~~~~^~~~~~~~~~~
+main.c: In function ‘main’:
+main.c:2203:67: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+ 2203 |         if (fread(source_buffer, 1, source_buffer_n, source_file) < source_buffer_n)
+      |                                                                   ^
+cc -Wall -Wextra main.c extended.c -o aif2pcm  -lm
+cc -Wall -Wextra bin2c.c -o bin2c 
+cc gbafix.c -o gbafix 
+cc -Wall -Wextra main.c convert_png.c gfx.c jasc_pal.c lz.c rl.c util.c font.c huff.c -o gbagfx  -lpng -lz
+g++ -Wall -std=c++17 -O2 -I . jsonproc.cpp -o jsonproc 
+g++ -Wall -std=c++11 -O2 json11.cpp mapjson.cpp -o mapjson 
+g++ -std=c++11 -O2 -Wall -Wno-switch -Werror agb.cpp error.cpp main.cpp midi.cpp tables.cpp -o mid2agb 
+g++ -std=c++11 -O2 -Wall -Wno-switch -Werror asm_file.cpp c_file.cpp charmap.cpp preproc.cpp string_parser.cpp utf8.cpp io.cpp -o preproc 
+g++ -std=c++11 -O2 -Wall -Wno-switch -Werror main.cpp sym_file.cpp elf.cpp -o ramscrgen 
+cc -Wall -Wextra main.c convert_png.c util.c font.c -o rsfont  -lpng -lz
+g++ -Wall -Werror -std=c++11 -O2 scaninc.cpp c_file.cpp asm_file.cpp source_file.cpp -o scaninc 
+cc -Wall -Wextra main.c -o trainerproc 
+g++ -Werror -std=c++17 -O2 -I . compresSmol.cpp compressAlgo.cpp tANS.cpp -o compresSmol 
+g++ -Werror -std=c++17 -O2  mainTiles.cpp compressSmolTiles.cpp tANS.cpp compressAlgo.cpp -o compresSmolTilemap 
+go build -o poryscript
+python3 tools/wild_encounters/wild_encounters_to_header.py > src/data/wild_encounters.h
+python3  tools/misc/make_scr_cmd_constants.py
+tools/mapjson/mapjson groups emerald data/maps/map_groups.json data/maps include/constants
+tools/mapjson/mapjson layouts emerald data/layouts/layouts.json data/layouts include/constants
+tools/mapjson/mapjson event_constants emerald <MAP_JSONS> include/constants/map_event_ids.h
+tools/mapjson/mapjson groups emerald data/maps/map_groups.json data/maps include/constants
+tools/jsonproc/jsonproc src/data/region_map/region_map_sections.json src/data/region_map/region_map_sections.json.txt src/data/region_map/region_map_entries.h
+tools/jsonproc/jsonproc src/data/region_map/region_map_sections.json src/data/region_map/region_map_sections.constants.json.txt include/constants/region_map_sections.h
+tools/jsonproc/jsonproc src/data/heal_locations.json src/data/heal_locations.json.txt src/data/heal_locations.h
+tools/jsonproc/jsonproc src/data/heal_locations.json src/data/heal_locations.constants.json.txt include/constants/heal_locations.h
+arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -std=gnu17 -traditional-cpp - < src/data/trainers.party | tools/trainerproc/trainerproc -o src/data/trainers.h -i src/data/trainers.party -
+arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -std=gnu17 -traditional-cpp - < src/data/battle_partners.party | tools/trainerproc/trainerproc -o src/data/battle_partners.h -i src/data/battle_partners.party -
+arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -std=gnu17 -traditional-cpp - < test/battle/trainer_control.party | tools/trainerproc/trainerproc -o test/battle/trainer_control.h -i test/battle/trainer_control.party -
+arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -std=gnu17 -traditional-cpp - < src/data/debug_trainers.party | tools/trainerproc/trainerproc -o src/data/debug_trainers.h -i src/data/debug_trainers.party -
+tools/poryscript/poryscript -i data/maps/AbandonedShip_CaptainsOffice/scripts.pory -o data/maps/AbandonedShip_CaptainsOffice/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Corridors_1F/scripts.pory -o data/maps/AbandonedShip_Corridors_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Corridors_B1F/scripts.pory -o data/maps/AbandonedShip_Corridors_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Deck/scripts.pory -o data/maps/AbandonedShip_Deck/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_HiddenFloorCorridors/scripts.pory -o data/maps/AbandonedShip_HiddenFloorCorridors/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_HiddenFloorRooms/scripts.pory -o data/maps/AbandonedShip_HiddenFloorRooms/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Room_B1F/scripts.pory -o data/maps/AbandonedShip_Room_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Rooms2_1F/scripts.pory -o data/maps/AbandonedShip_Rooms2_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Rooms2_B1F/scripts.pory -o data/maps/AbandonedShip_Rooms2_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Rooms_1F/scripts.pory -o data/maps/AbandonedShip_Rooms_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Rooms_B1F/scripts.pory -o data/maps/AbandonedShip_Rooms_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Underwater1/scripts.pory -o data/maps/AbandonedShip_Underwater1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AbandonedShip_Underwater2/scripts.pory -o data/maps/AbandonedShip_Underwater2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AlteringCave/scripts.pory -o data/maps/AlteringCave/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AncientTomb/scripts.pory -o data/maps/AncientTomb/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AquaHideout_1F/scripts.pory -o data/maps/AquaHideout_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AquaHideout_B1F/scripts.pory -o data/maps/AquaHideout_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AquaHideout_B2F/scripts.pory -o data/maps/AquaHideout_B2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AquaHideout_UnusedRubyMap1/scripts.pory -o data/maps/AquaHideout_UnusedRubyMap1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AquaHideout_UnusedRubyMap2/scripts.pory -o data/maps/AquaHideout_UnusedRubyMap2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AquaHideout_UnusedRubyMap3/scripts.pory -o data/maps/AquaHideout_UnusedRubyMap3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ArtisanCave_1F/scripts.pory -o data/maps/ArtisanCave_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ArtisanCave_B1F/scripts.pory -o data/maps/ArtisanCave_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleColosseum_2P/scripts.pory -o data/maps/BattleColosseum_2P/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleColosseum_4P/scripts.pory -o data/maps/BattleColosseum_4P/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleArenaBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleArenaBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleArenaCorridor/scripts.pory -o data/maps/BattleFrontier_BattleArenaCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleArenaLobby/scripts.pory -o data/maps/BattleFrontier_BattleArenaLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleDomeBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleDomeBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleDomeCorridor/scripts.pory -o data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleDomeLobby/scripts.pory -o data/maps/BattleFrontier_BattleDomeLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory -o data/maps/BattleFrontier_BattleFactoryLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleFactoryPreBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleFactoryPreBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePalaceBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattlePalaceBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePalaceCorridor/scripts.pory -o data/maps/BattleFrontier_BattlePalaceCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePalaceLobby/scripts.pory -o data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePikeCorridor/scripts.pory -o data/maps/BattleFrontier_BattlePikeCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePikeLobby/scripts.pory -o data/maps/BattleFrontier_BattlePikeLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePikeRoomFinal/scripts.pory -o data/maps/BattleFrontier_BattlePikeRoomFinal/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePikeRoomNormal/scripts.pory -o data/maps/BattleFrontier_BattlePikeRoomNormal/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.pory -o data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.pory -o data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePyramidFloor/scripts.pory -o data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory -o data/maps/BattleFrontier_BattlePyramidLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattlePyramidTop/scripts.pory -o data/maps/BattleFrontier_BattlePyramidTop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerCorridor/scripts.pory -o data/maps/BattleFrontier_BattleTowerCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerElevator/scripts.pory -o data/maps/BattleFrontier_BattleTowerElevator/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerLobby/scripts.pory -o data/maps/BattleFrontier_BattleTowerLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.pory -o data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerMultiCorridor/scripts.pory -o data/maps/BattleFrontier_BattleTowerMultiCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.pory -o data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_ExchangeServiceCorner/scripts.pory -o data/maps/BattleFrontier_ExchangeServiceCorner/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge1/scripts.pory -o data/maps/BattleFrontier_Lounge1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge2/scripts.pory -o data/maps/BattleFrontier_Lounge2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge3/scripts.pory -o data/maps/BattleFrontier_Lounge3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge4/scripts.pory -o data/maps/BattleFrontier_Lounge4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge5/scripts.pory -o data/maps/BattleFrontier_Lounge5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge6/scripts.pory -o data/maps/BattleFrontier_Lounge6/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge7/scripts.pory -o data/maps/BattleFrontier_Lounge7/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge8/scripts.pory -o data/maps/BattleFrontier_Lounge8/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Lounge9/scripts.pory -o data/maps/BattleFrontier_Lounge9/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_Mart/scripts.pory -o data/maps/BattleFrontier_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_OutsideEast/scripts.pory -o data/maps/BattleFrontier_OutsideEast/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_OutsideWest/scripts.pory -o data/maps/BattleFrontier_OutsideWest/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_PokemonCenter_1F/scripts.pory -o data/maps/BattleFrontier_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_PokemonCenter_2F/scripts.pory -o data/maps/BattleFrontier_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_RankingHall/scripts.pory -o data/maps/BattleFrontier_RankingHall/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_ReceptionGate/scripts.pory -o data/maps/BattleFrontier_ReceptionGate/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattleFrontier_ScottsHouse/scripts.pory -o data/maps/BattleFrontier_ScottsHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BattlePyramidSquare01/scripts.pory -o data/maps/BattlePyramidSquare01/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BirthIsland_Exterior/scripts.pory -o data/maps/BirthIsland_Exterior/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/BirthIsland_Harbor/scripts.pory -o data/maps/BirthIsland_Harbor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/CaveOfOrigin_1F/scripts.pory -o data/maps/CaveOfOrigin_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/CaveOfOrigin_B1F/scripts.pory -o data/maps/CaveOfOrigin_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/CaveOfOrigin_Entrance/scripts.pory -o data/maps/CaveOfOrigin_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.pory -o data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/CaveOfOrigin_UnusedRubySapphireMap2/scripts.pory -o data/maps/CaveOfOrigin_UnusedRubySapphireMap2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/CaveOfOrigin_UnusedRubySapphireMap3/scripts.pory -o data/maps/CaveOfOrigin_UnusedRubySapphireMap3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ContestHall/scripts.pory -o data/maps/ContestHall/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DesertRuins/scripts.pory -o data/maps/DesertRuins/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DesertUnderpass/scripts.pory -o data/maps/DesertUnderpass/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown/scripts.pory -o data/maps/DewfordTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown_Gym/scripts.pory -o data/maps/DewfordTown_Gym/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown_Hall/scripts.pory -o data/maps/DewfordTown_Hall/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown_House1/scripts.pory -o data/maps/DewfordTown_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown_House2/scripts.pory -o data/maps/DewfordTown_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown_PokemonCenter_1F/scripts.pory -o data/maps/DewfordTown_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/DewfordTown_PokemonCenter_2F/scripts.pory -o data/maps/DewfordTown_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity/scripts.pory -o data/maps/EverGrandeCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_ChampionsRoom/scripts.pory -o data/maps/EverGrandeCity_ChampionsRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_DrakesRoom/scripts.pory -o data/maps/EverGrandeCity_DrakesRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_GlaciasRoom/scripts.pory -o data/maps/EverGrandeCity_GlaciasRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_Hall1/scripts.pory -o data/maps/EverGrandeCity_Hall1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_Hall2/scripts.pory -o data/maps/EverGrandeCity_Hall2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_Hall3/scripts.pory -o data/maps/EverGrandeCity_Hall3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_Hall4/scripts.pory -o data/maps/EverGrandeCity_Hall4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_Hall5/scripts.pory -o data/maps/EverGrandeCity_Hall5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_HallOfFame/scripts.pory -o data/maps/EverGrandeCity_HallOfFame/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_PhoebesRoom/scripts.pory -o data/maps/EverGrandeCity_PhoebesRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_PokemonCenter_1F/scripts.pory -o data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_PokemonCenter_2F/scripts.pory -o data/maps/EverGrandeCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_PokemonLeague_1F/scripts.pory -o data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_PokemonLeague_2F/scripts.pory -o data/maps/EverGrandeCity_PokemonLeague_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/EverGrandeCity_SidneysRoom/scripts.pory -o data/maps/EverGrandeCity_SidneysRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown/scripts.pory -o data/maps/FallarborTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_BattleTentBattleRoom/scripts.pory -o data/maps/FallarborTown_BattleTentBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_BattleTentCorridor/scripts.pory -o data/maps/FallarborTown_BattleTentCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_BattleTentLobby/scripts.pory -o data/maps/FallarborTown_BattleTentLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_CozmosHouse/scripts.pory -o data/maps/FallarborTown_CozmosHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_Mart/scripts.pory -o data/maps/FallarborTown_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_MoveRelearnersHouse/scripts.pory -o data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_PokemonCenter_1F/scripts.pory -o data/maps/FallarborTown_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FallarborTown_PokemonCenter_2F/scripts.pory -o data/maps/FallarborTown_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FarawayIsland_Entrance/scripts.pory -o data/maps/FarawayIsland_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FarawayIsland_Interior/scripts.pory -o data/maps/FarawayIsland_Interior/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FieryPath/scripts.pory -o data/maps/FieryPath/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity/scripts.pory -o data/maps/FortreeCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_DecorationShop/scripts.pory -o data/maps/FortreeCity_DecorationShop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_Gym/scripts.pory -o data/maps/FortreeCity_Gym/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_House1/scripts.pory -o data/maps/FortreeCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_House2/scripts.pory -o data/maps/FortreeCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_House3/scripts.pory -o data/maps/FortreeCity_House3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_House4/scripts.pory -o data/maps/FortreeCity_House4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_House5/scripts.pory -o data/maps/FortreeCity_House5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_Mart/scripts.pory -o data/maps/FortreeCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_PokemonCenter_1F/scripts.pory -o data/maps/FortreeCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/FortreeCity_PokemonCenter_2F/scripts.pory -o data/maps/FortreeCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/GraniteCave_1F/scripts.pory -o data/maps/GraniteCave_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/GraniteCave_B1F/scripts.pory -o data/maps/GraniteCave_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/GraniteCave_B2F/scripts.pory -o data/maps/GraniteCave_B2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/GraniteCave_StevensRoom/scripts.pory -o data/maps/GraniteCave_StevensRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/IslandCave/scripts.pory -o data/maps/IslandCave/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/JaggedPass/scripts.pory -o data/maps/JaggedPass/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown/scripts.pory -o data/maps/LavaridgeTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_Gym_1F/scripts.pory -o data/maps/LavaridgeTown_Gym_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_Gym_B1F/scripts.pory -o data/maps/LavaridgeTown_Gym_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_HerbShop/scripts.pory -o data/maps/LavaridgeTown_HerbShop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_House/scripts.pory -o data/maps/LavaridgeTown_House/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_Mart/scripts.pory -o data/maps/LavaridgeTown_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_PokemonCenter_1F/scripts.pory -o data/maps/LavaridgeTown_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory -o data/maps/LavaridgeTown_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity/scripts.pory -o data/maps/LilycoveCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_ContestHall/scripts.pory -o data/maps/LilycoveCity_ContestHall/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_ContestLobby/scripts.pory -o data/maps/LilycoveCity_ContestLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.pory -o data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_CoveLilyMotel_2F/scripts.pory -o data/maps/LilycoveCity_CoveLilyMotel_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStoreElevator/scripts.pory -o data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStoreRooftop/scripts.pory -o data/maps/LilycoveCity_DepartmentStoreRooftop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStore_1F/scripts.pory -o data/maps/LilycoveCity_DepartmentStore_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStore_2F/scripts.pory -o data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStore_3F/scripts.pory -o data/maps/LilycoveCity_DepartmentStore_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStore_4F/scripts.pory -o data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_DepartmentStore_5F/scripts.pory -o data/maps/LilycoveCity_DepartmentStore_5F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_Harbor/scripts.pory -o data/maps/LilycoveCity_Harbor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_House1/scripts.pory -o data/maps/LilycoveCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_House2/scripts.pory -o data/maps/LilycoveCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_House3/scripts.pory -o data/maps/LilycoveCity_House3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_House4/scripts.pory -o data/maps/LilycoveCity_House4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_LilycoveMuseum_1F/scripts.pory -o data/maps/LilycoveCity_LilycoveMuseum_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_LilycoveMuseum_2F/scripts.pory -o data/maps/LilycoveCity_LilycoveMuseum_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_MoveDeletersHouse/scripts.pory -o data/maps/LilycoveCity_MoveDeletersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_PokemonCenter_1F/scripts.pory -o data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_PokemonCenter_2F/scripts.pory -o data/maps/LilycoveCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_PokemonTrainerFanClub/scripts.pory -o data/maps/LilycoveCity_PokemonTrainerFanClub/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LilycoveCity_UnusedMart/scripts.pory -o data/maps/LilycoveCity_UnusedMart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LittlerootTown/scripts.pory -o data/maps/LittlerootTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LittlerootTown_BrendansHouse_1F/scripts.pory -o data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory -o data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LittlerootTown_MaysHouse_1F/scripts.pory -o data/maps/LittlerootTown_MaysHouse_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LittlerootTown_MaysHouse_2F/scripts.pory -o data/maps/LittlerootTown_MaysHouse_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory -o data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_1F/scripts.pory -o data/maps/MagmaHideout_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_2F_1R/scripts.pory -o data/maps/MagmaHideout_2F_1R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_2F_2R/scripts.pory -o data/maps/MagmaHideout_2F_2R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_2F_3R/scripts.pory -o data/maps/MagmaHideout_2F_3R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_3F_1R/scripts.pory -o data/maps/MagmaHideout_3F_1R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_3F_2R/scripts.pory -o data/maps/MagmaHideout_3F_2R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_3F_3R/scripts.pory -o data/maps/MagmaHideout_3F_3R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MagmaHideout_4F/scripts.pory -o data/maps/MagmaHideout_4F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MarineCave_End/scripts.pory -o data/maps/MarineCave_End/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MarineCave_Entrance/scripts.pory -o data/maps/MarineCave_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity/scripts.pory -o data/maps/MauvilleCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_BikeShop/scripts.pory -o data/maps/MauvilleCity_BikeShop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_GameCorner/scripts.pory -o data/maps/MauvilleCity_GameCorner/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_Gym/scripts.pory -o data/maps/MauvilleCity_Gym/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_House1/scripts.pory -o data/maps/MauvilleCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_House2/scripts.pory -o data/maps/MauvilleCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_Mart/scripts.pory -o data/maps/MauvilleCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_PokemonCenter_1F/scripts.pory -o data/maps/MauvilleCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory -o data/maps/MauvilleCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MeteorFalls_1F_1R/scripts.pory -o data/maps/MeteorFalls_1F_1R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MeteorFalls_1F_2R/scripts.pory -o data/maps/MeteorFalls_1F_2R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MeteorFalls_B1F_1R/scripts.pory -o data/maps/MeteorFalls_B1F_1R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MeteorFalls_B1F_2R/scripts.pory -o data/maps/MeteorFalls_B1F_2R/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MeteorFalls_StevensCave/scripts.pory -o data/maps/MeteorFalls_StevensCave/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MirageTower_1F/scripts.pory -o data/maps/MirageTower_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MirageTower_2F/scripts.pory -o data/maps/MirageTower_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MirageTower_3F/scripts.pory -o data/maps/MirageTower_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MirageTower_4F/scripts.pory -o data/maps/MirageTower_4F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity/scripts.pory -o data/maps/MossdeepCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_GameCorner_1F/scripts.pory -o data/maps/MossdeepCity_GameCorner_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_GameCorner_B1F/scripts.pory -o data/maps/MossdeepCity_GameCorner_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_Gym/scripts.pory -o data/maps/MossdeepCity_Gym/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_House1/scripts.pory -o data/maps/MossdeepCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_House2/scripts.pory -o data/maps/MossdeepCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_House3/scripts.pory -o data/maps/MossdeepCity_House3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_House4/scripts.pory -o data/maps/MossdeepCity_House4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_Mart/scripts.pory -o data/maps/MossdeepCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_PokemonCenter_1F/scripts.pory -o data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_PokemonCenter_2F/scripts.pory -o data/maps/MossdeepCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_SpaceCenter_1F/scripts.pory -o data/maps/MossdeepCity_SpaceCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_SpaceCenter_2F/scripts.pory -o data/maps/MossdeepCity_SpaceCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MossdeepCity_StevensHouse/scripts.pory -o data/maps/MossdeepCity_StevensHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtChimney/scripts.pory -o data/maps/MtChimney/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtChimney_CableCarStation/scripts.pory -o data/maps/MtChimney_CableCarStation/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_1F/scripts.pory -o data/maps/MtPyre_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_2F/scripts.pory -o data/maps/MtPyre_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_3F/scripts.pory -o data/maps/MtPyre_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_4F/scripts.pory -o data/maps/MtPyre_4F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_5F/scripts.pory -o data/maps/MtPyre_5F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_6F/scripts.pory -o data/maps/MtPyre_6F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_Exterior/scripts.pory -o data/maps/MtPyre_Exterior/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/MtPyre_Summit/scripts.pory -o data/maps/MtPyre_Summit/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_B1F/scripts.pory -o data/maps/NavelRock_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Bottom/scripts.pory -o data/maps/NavelRock_Bottom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down01/scripts.pory -o data/maps/NavelRock_Down01/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down02/scripts.pory -o data/maps/NavelRock_Down02/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down03/scripts.pory -o data/maps/NavelRock_Down03/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down04/scripts.pory -o data/maps/NavelRock_Down04/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down05/scripts.pory -o data/maps/NavelRock_Down05/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down06/scripts.pory -o data/maps/NavelRock_Down06/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down07/scripts.pory -o data/maps/NavelRock_Down07/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down08/scripts.pory -o data/maps/NavelRock_Down08/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down09/scripts.pory -o data/maps/NavelRock_Down09/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down10/scripts.pory -o data/maps/NavelRock_Down10/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Down11/scripts.pory -o data/maps/NavelRock_Down11/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Entrance/scripts.pory -o data/maps/NavelRock_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Exterior/scripts.pory -o data/maps/NavelRock_Exterior/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Fork/scripts.pory -o data/maps/NavelRock_Fork/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Harbor/scripts.pory -o data/maps/NavelRock_Harbor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Top/scripts.pory -o data/maps/NavelRock_Top/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Up1/scripts.pory -o data/maps/NavelRock_Up1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Up2/scripts.pory -o data/maps/NavelRock_Up2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Up3/scripts.pory -o data/maps/NavelRock_Up3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NavelRock_Up4/scripts.pory -o data/maps/NavelRock_Up4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NewMauville_Entrance/scripts.pory -o data/maps/NewMauville_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/NewMauville_Inside/scripts.pory -o data/maps/NewMauville_Inside/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/OldaleTown/scripts.pory -o data/maps/OldaleTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/OldaleTown_House1/scripts.pory -o data/maps/OldaleTown_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/OldaleTown_House2/scripts.pory -o data/maps/OldaleTown_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/OldaleTown_Mart/scripts.pory -o data/maps/OldaleTown_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/OldaleTown_PokemonCenter_1F/scripts.pory -o data/maps/OldaleTown_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/OldaleTown_PokemonCenter_2F/scripts.pory -o data/maps/OldaleTown_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown/scripts.pory -o data/maps/PacifidlogTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_House1/scripts.pory -o data/maps/PacifidlogTown_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_House2/scripts.pory -o data/maps/PacifidlogTown_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_House3/scripts.pory -o data/maps/PacifidlogTown_House3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_House4/scripts.pory -o data/maps/PacifidlogTown_House4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_House5/scripts.pory -o data/maps/PacifidlogTown_House5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_PokemonCenter_1F/scripts.pory -o data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PacifidlogTown_PokemonCenter_2F/scripts.pory -o data/maps/PacifidlogTown_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity/scripts.pory -o data/maps/PetalburgCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_Gym/scripts.pory -o data/maps/PetalburgCity_Gym/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_House1/scripts.pory -o data/maps/PetalburgCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_House2/scripts.pory -o data/maps/PetalburgCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_Mart/scripts.pory -o data/maps/PetalburgCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_PokemonCenter_1F/scripts.pory -o data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory -o data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgCity_WallysHouse/scripts.pory -o data/maps/PetalburgCity_WallysHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/PetalburgWoods/scripts.pory -o data/maps/PetalburgWoods/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RecordCorner/scripts.pory -o data/maps/RecordCorner/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route101/scripts.pory -o data/maps/Route101/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route102/scripts.pory -o data/maps/Route102/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route103/scripts.pory -o data/maps/Route103/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route104/scripts.pory -o data/maps/Route104/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route104_MrBrineysHouse/scripts.pory -o data/maps/Route104_MrBrineysHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route104_PrettyPetalFlowerShop/scripts.pory -o data/maps/Route104_PrettyPetalFlowerShop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route104_Prototype/scripts.pory -o data/maps/Route104_Prototype/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route104_PrototypePrettyPetalFlowerShop/scripts.pory -o data/maps/Route104_PrototypePrettyPetalFlowerShop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route105/scripts.pory -o data/maps/Route105/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route106/scripts.pory -o data/maps/Route106/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route107/scripts.pory -o data/maps/Route107/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route108/scripts.pory -o data/maps/Route108/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route109/scripts.pory -o data/maps/Route109/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route109_SeashoreHouse/scripts.pory -o data/maps/Route109_SeashoreHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110/scripts.pory -o data/maps/Route110/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_SeasideCyclingRoadNorthEntrance/scripts.pory -o data/maps/Route110_SeasideCyclingRoadNorthEntrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_SeasideCyclingRoadSouthEntrance/scripts.pory -o data/maps/Route110_SeasideCyclingRoadSouthEntrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHouseCorridor/scripts.pory -o data/maps/Route110_TrickHouseCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHouseEnd/scripts.pory -o data/maps/Route110_TrickHouseEnd/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHouseEntrance/scripts.pory -o data/maps/Route110_TrickHouseEntrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle1/scripts.pory -o data/maps/Route110_TrickHousePuzzle1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle2/scripts.pory -o data/maps/Route110_TrickHousePuzzle2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle3/scripts.pory -o data/maps/Route110_TrickHousePuzzle3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle4/scripts.pory -o data/maps/Route110_TrickHousePuzzle4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle5/scripts.pory -o data/maps/Route110_TrickHousePuzzle5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle6/scripts.pory -o data/maps/Route110_TrickHousePuzzle6/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle7/scripts.pory -o data/maps/Route110_TrickHousePuzzle7/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route110_TrickHousePuzzle8/scripts.pory -o data/maps/Route110_TrickHousePuzzle8/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route111/scripts.pory -o data/maps/Route111/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route111_OldLadysRestStop/scripts.pory -o data/maps/Route111_OldLadysRestStop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route111_WinstrateFamilysHouse/scripts.pory -o data/maps/Route111_WinstrateFamilysHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route112/scripts.pory -o data/maps/Route112/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route112_CableCarStation/scripts.pory -o data/maps/Route112_CableCarStation/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route113/scripts.pory -o data/maps/Route113/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route113_GlassWorkshop/scripts.pory -o data/maps/Route113_GlassWorkshop/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route114/scripts.pory -o data/maps/Route114/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route114_FossilManiacsHouse/scripts.pory -o data/maps/Route114_FossilManiacsHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route114_FossilManiacsTunnel/scripts.pory -o data/maps/Route114_FossilManiacsTunnel/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route114_LanettesHouse/scripts.pory -o data/maps/Route114_LanettesHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route115/scripts.pory -o data/maps/Route115/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route116/scripts.pory -o data/maps/Route116/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route116_TunnelersRestHouse/scripts.pory -o data/maps/Route116_TunnelersRestHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route117/scripts.pory -o data/maps/Route117/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route117_PokemonDayCare/scripts.pory -o data/maps/Route117_PokemonDayCare/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route118/scripts.pory -o data/maps/Route118/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route119/scripts.pory -o data/maps/Route119/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route119_House/scripts.pory -o data/maps/Route119_House/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route119_WeatherInstitute_1F/scripts.pory -o data/maps/Route119_WeatherInstitute_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route119_WeatherInstitute_2F/scripts.pory -o data/maps/Route119_WeatherInstitute_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route120/scripts.pory -o data/maps/Route120/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route121/scripts.pory -o data/maps/Route121/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route121_SafariZoneEntrance/scripts.pory -o data/maps/Route121_SafariZoneEntrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route122/scripts.pory -o data/maps/Route122/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route123/scripts.pory -o data/maps/Route123/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route123_BerryMastersHouse/scripts.pory -o data/maps/Route123_BerryMastersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route124/scripts.pory -o data/maps/Route124/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route124_DivingTreasureHuntersHouse/scripts.pory -o data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route125/scripts.pory -o data/maps/Route125/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route126/scripts.pory -o data/maps/Route126/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route127/scripts.pory -o data/maps/Route127/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route128/scripts.pory -o data/maps/Route128/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route129/scripts.pory -o data/maps/Route129/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route130/scripts.pory -o data/maps/Route130/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route131/scripts.pory -o data/maps/Route131/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route132/scripts.pory -o data/maps/Route132/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route133/scripts.pory -o data/maps/Route133/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Route134/scripts.pory -o data/maps/Route134/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity/scripts.pory -o data/maps/RustboroCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_CuttersHouse/scripts.pory -o data/maps/RustboroCity_CuttersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_DevonCorp_1F/scripts.pory -o data/maps/RustboroCity_DevonCorp_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_DevonCorp_2F/scripts.pory -o data/maps/RustboroCity_DevonCorp_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_DevonCorp_3F/scripts.pory -o data/maps/RustboroCity_DevonCorp_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Flat1_1F/scripts.pory -o data/maps/RustboroCity_Flat1_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Flat1_2F/scripts.pory -o data/maps/RustboroCity_Flat1_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Flat2_1F/scripts.pory -o data/maps/RustboroCity_Flat2_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Flat2_2F/scripts.pory -o data/maps/RustboroCity_Flat2_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Flat2_3F/scripts.pory -o data/maps/RustboroCity_Flat2_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Gym/scripts.pory -o data/maps/RustboroCity_Gym/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_House1/scripts.pory -o data/maps/RustboroCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_House2/scripts.pory -o data/maps/RustboroCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_House3/scripts.pory -o data/maps/RustboroCity_House3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_Mart/scripts.pory -o data/maps/RustboroCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_PokemonCenter_1F/scripts.pory -o data/maps/RustboroCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_PokemonCenter_2F/scripts.pory -o data/maps/RustboroCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RustboroCity_PokemonSchool/scripts.pory -o data/maps/RustboroCity_PokemonSchool/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/RusturfTunnel/scripts.pory -o data/maps/RusturfTunnel/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SSTidalCorridor/scripts.pory -o data/maps/SSTidalCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SSTidalLowerDeck/scripts.pory -o data/maps/SSTidalLowerDeck/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SSTidalRooms/scripts.pory -o data/maps/SSTidalRooms/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_North/scripts.pory -o data/maps/SafariZone_North/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_Northeast/scripts.pory -o data/maps/SafariZone_Northeast/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_Northwest/scripts.pory -o data/maps/SafariZone_Northwest/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_RestHouse/scripts.pory -o data/maps/SafariZone_RestHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_South/scripts.pory -o data/maps/SafariZone_South/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_Southeast/scripts.pory -o data/maps/SafariZone_Southeast/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SafariZone_Southwest/scripts.pory -o data/maps/SafariZone_Southwest/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ScorchedSlab/scripts.pory -o data/maps/ScorchedSlab/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Entrance/scripts.pory -o data/maps/SeafloorCavern_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room1/scripts.pory -o data/maps/SeafloorCavern_Room1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room2/scripts.pory -o data/maps/SeafloorCavern_Room2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room3/scripts.pory -o data/maps/SeafloorCavern_Room3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room4/scripts.pory -o data/maps/SeafloorCavern_Room4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room5/scripts.pory -o data/maps/SeafloorCavern_Room5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room6/scripts.pory -o data/maps/SeafloorCavern_Room6/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room7/scripts.pory -o data/maps/SeafloorCavern_Room7/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room8/scripts.pory -o data/maps/SeafloorCavern_Room8/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SeafloorCavern_Room9/scripts.pory -o data/maps/SeafloorCavern_Room9/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SealedChamber_InnerRoom/scripts.pory -o data/maps/SealedChamber_InnerRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SealedChamber_OuterRoom/scripts.pory -o data/maps/SealedChamber_OuterRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_HighTideEntranceRoom/scripts.pory -o data/maps/ShoalCave_HighTideEntranceRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_HighTideInnerRoom/scripts.pory -o data/maps/ShoalCave_HighTideInnerRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_LowTideEntranceRoom/scripts.pory -o data/maps/ShoalCave_LowTideEntranceRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_LowTideIceRoom/scripts.pory -o data/maps/ShoalCave_LowTideIceRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_LowTideInnerRoom/scripts.pory -o data/maps/ShoalCave_LowTideInnerRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_LowTideLowerRoom/scripts.pory -o data/maps/ShoalCave_LowTideLowerRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/ShoalCave_LowTideStairsRoom/scripts.pory -o data/maps/ShoalCave_LowTideStairsRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_1F/scripts.pory -o data/maps/SkyPillar_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_2F/scripts.pory -o data/maps/SkyPillar_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_3F/scripts.pory -o data/maps/SkyPillar_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_4F/scripts.pory -o data/maps/SkyPillar_4F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_5F/scripts.pory -o data/maps/SkyPillar_5F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_Entrance/scripts.pory -o data/maps/SkyPillar_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_Outside/scripts.pory -o data/maps/SkyPillar_Outside/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SkyPillar_Top/scripts.pory -o data/maps/SkyPillar_Top/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity/scripts.pory -o data/maps/SlateportCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_BattleTentBattleRoom/scripts.pory -o data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_BattleTentCorridor/scripts.pory -o data/maps/SlateportCity_BattleTentCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_BattleTentLobby/scripts.pory -o data/maps/SlateportCity_BattleTentLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_Harbor/scripts.pory -o data/maps/SlateportCity_Harbor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_House/scripts.pory -o data/maps/SlateportCity_House/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_Mart/scripts.pory -o data/maps/SlateportCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_NameRatersHouse/scripts.pory -o data/maps/SlateportCity_NameRatersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_OceanicMuseum_1F/scripts.pory -o data/maps/SlateportCity_OceanicMuseum_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_OceanicMuseum_2F/scripts.pory -o data/maps/SlateportCity_OceanicMuseum_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_PokemonCenter_1F/scripts.pory -o data/maps/SlateportCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_PokemonCenter_2F/scripts.pory -o data/maps/SlateportCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_PokemonFanClub/scripts.pory -o data/maps/SlateportCity_PokemonFanClub/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_SternsShipyard_1F/scripts.pory -o data/maps/SlateportCity_SternsShipyard_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SlateportCity_SternsShipyard_2F/scripts.pory -o data/maps/SlateportCity_SternsShipyard_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity/scripts.pory -o data/maps/SootopolisCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_Gym_1F/scripts.pory -o data/maps/SootopolisCity_Gym_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_Gym_B1F/scripts.pory -o data/maps/SootopolisCity_Gym_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House1/scripts.pory -o data/maps/SootopolisCity_House1/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House2/scripts.pory -o data/maps/SootopolisCity_House2/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House3/scripts.pory -o data/maps/SootopolisCity_House3/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House4/scripts.pory -o data/maps/SootopolisCity_House4/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House5/scripts.pory -o data/maps/SootopolisCity_House5/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House6/scripts.pory -o data/maps/SootopolisCity_House6/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_House7/scripts.pory -o data/maps/SootopolisCity_House7/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.pory -o data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_Mart/scripts.pory -o data/maps/SootopolisCity_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_MysteryEventsHouse_1F/scripts.pory -o data/maps/SootopolisCity_MysteryEventsHouse_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_MysteryEventsHouse_B1F/scripts.pory -o data/maps/SootopolisCity_MysteryEventsHouse_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_PokemonCenter_1F/scripts.pory -o data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SootopolisCity_PokemonCenter_2F/scripts.pory -o data/maps/SootopolisCity_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SouthernIsland_Exterior/scripts.pory -o data/maps/SouthernIsland_Exterior/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/SouthernIsland_Interior/scripts.pory -o data/maps/SouthernIsland_Interior/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TerraCave_End/scripts.pory -o data/maps/TerraCave_End/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TerraCave_Entrance/scripts.pory -o data/maps/TerraCave_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TradeCenter/scripts.pory -o data/maps/TradeCenter/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_1F/scripts.pory -o data/maps/TrainerHill_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_2F/scripts.pory -o data/maps/TrainerHill_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_3F/scripts.pory -o data/maps/TrainerHill_3F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_4F/scripts.pory -o data/maps/TrainerHill_4F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_Elevator/scripts.pory -o data/maps/TrainerHill_Elevator/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_Entrance/scripts.pory -o data/maps/TrainerHill_Entrance/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/TrainerHill_Roof/scripts.pory -o data/maps/TrainerHill_Roof/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_MarineCave/scripts.pory -o data/maps/Underwater_MarineCave/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route105/scripts.pory -o data/maps/Underwater_Route105/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route124/scripts.pory -o data/maps/Underwater_Route124/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route125/scripts.pory -o data/maps/Underwater_Route125/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route126/scripts.pory -o data/maps/Underwater_Route126/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route127/scripts.pory -o data/maps/Underwater_Route127/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route128/scripts.pory -o data/maps/Underwater_Route128/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route129/scripts.pory -o data/maps/Underwater_Route129/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_Route134/scripts.pory -o data/maps/Underwater_Route134/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_SeafloorCavern/scripts.pory -o data/maps/Underwater_SeafloorCavern/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_SealedChamber/scripts.pory -o data/maps/Underwater_SealedChamber/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/Underwater_SootopolisCity/scripts.pory -o data/maps/Underwater_SootopolisCity/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/UnionRoom/scripts.pory -o data/maps/UnionRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown/scripts.pory -o data/maps/VerdanturfTown/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_BattleTentBattleRoom/scripts.pory -o data/maps/VerdanturfTown_BattleTentBattleRoom/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_BattleTentCorridor/scripts.pory -o data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_BattleTentLobby/scripts.pory -o data/maps/VerdanturfTown_BattleTentLobby/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_FriendshipRatersHouse/scripts.pory -o data/maps/VerdanturfTown_FriendshipRatersHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_House/scripts.pory -o data/maps/VerdanturfTown_House/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_Mart/scripts.pory -o data/maps/VerdanturfTown_Mart/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_PokemonCenter_1F/scripts.pory -o data/maps/VerdanturfTown_PokemonCenter_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_PokemonCenter_2F/scripts.pory -o data/maps/VerdanturfTown_PokemonCenter_2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VerdanturfTown_WandasHouse/scripts.pory -o data/maps/VerdanturfTown_WandasHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VictoryRoad_1F/scripts.pory -o data/maps/VictoryRoad_1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VictoryRoad_B1F/scripts.pory -o data/maps/VictoryRoad_B1F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/VictoryRoad_B2F/scripts.pory -o data/maps/VictoryRoad_B2F/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/InsideOfTruck/scripts.pory -o data/maps/InsideOfTruck/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/poryscript/poryscript -i data/maps/AA_DOCKS/scripts.pory -o data/maps/AA_DOCKS/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
+tools/scaninc/scaninc -M build/modern/src/agb_flash_1m.d -I include -I tools/agbcc/include src/agb_flash_1m.c
+tools/scaninc/scaninc -M build/modern/src/agb_flash.d -I include -I tools/agbcc/include src/agb_flash.c
+tools/scaninc/scaninc -M build/modern/src/agb_flash_le.d -I include -I tools/agbcc/include src/agb_flash_le.c
+tools/scaninc/scaninc -M build/modern/src/agb_flash_mx.d -I include -I tools/agbcc/include src/agb_flash_mx.c
+tools/scaninc/scaninc -M build/modern/src/AgbRfu_LinkManager.d -I include -I tools/agbcc/include src/AgbRfu_LinkManager.c
+tools/scaninc/scaninc -M build/modern/src/apprentice.d -I include -I tools/agbcc/include src/apprentice.c
+tools/scaninc/scaninc -M build/modern/src/bard_music.d -I include -I tools/agbcc/include src/bard_music.c
+tools/scaninc/scaninc -M build/modern/src/battle_ai_field_statuses.d -I include -I tools/agbcc/include src/battle_ai_field_statuses.c
+tools/scaninc/scaninc -M build/modern/src/battle_ai_main.d -I include -I tools/agbcc/include src/battle_ai_main.c
+tools/scaninc/scaninc -M build/modern/src/battle_ai_script_commands.d -I include -I tools/agbcc/include src/battle_ai_script_commands.c
+tools/scaninc/scaninc -M build/modern/src/battle_ai_switch_items.d -I include -I tools/agbcc/include src/battle_ai_switch_items.c
+tools/scaninc/scaninc -M build/modern/src/battle_ai_util.d -I include -I tools/agbcc/include src/battle_ai_util.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_bug.d -I include -I tools/agbcc/include src/battle_anim_bug.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim.d -I include -I tools/agbcc/include src/battle_anim.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_dark.d -I include -I tools/agbcc/include src/battle_anim_dark.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_dragon.d -I include -I tools/agbcc/include src/battle_anim_dragon.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_effects_1.d -I include -I tools/agbcc/include src/battle_anim_effects_1.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_effects_2.d -I include -I tools/agbcc/include src/battle_anim_effects_2.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_effects_3.d -I include -I tools/agbcc/include src/battle_anim_effects_3.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_electric.d -I include -I tools/agbcc/include src/battle_anim_electric.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_fight.d -I include -I tools/agbcc/include src/battle_anim_fight.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_fire.d -I include -I tools/agbcc/include src/battle_anim_fire.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_flying.d -I include -I tools/agbcc/include src/battle_anim_flying.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_ghost.d -I include -I tools/agbcc/include src/battle_anim_ghost.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_ground.d -I include -I tools/agbcc/include src/battle_anim_ground.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_ice.d -I include -I tools/agbcc/include src/battle_anim_ice.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_mon_movement.d -I include -I tools/agbcc/include src/battle_anim_mon_movement.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_mons.d -I include -I tools/agbcc/include src/battle_anim_mons.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_new.d -I include -I tools/agbcc/include src/battle_anim_new.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_normal.d -I include -I tools/agbcc/include src/battle_anim_normal.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_poison.d -I include -I tools/agbcc/include src/battle_anim_poison.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_psychic.d -I include -I tools/agbcc/include src/battle_anim_psychic.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_rock.d -I include -I tools/agbcc/include src/battle_anim_rock.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_smokescreen.d -I include -I tools/agbcc/include src/battle_anim_smokescreen.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_sound_tasks.d -I include -I tools/agbcc/include src/battle_anim_sound_tasks.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_status_effects.d -I include -I tools/agbcc/include src/battle_anim_status_effects.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_throw.d -I include -I tools/agbcc/include src/battle_anim_throw.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_utility_funcs.d -I include -I tools/agbcc/include src/battle_anim_utility_funcs.c
+tools/scaninc/scaninc -M build/modern/src/battle_anim_water.d -I include -I tools/agbcc/include src/battle_anim_water.c
+tools/scaninc/scaninc -M build/modern/src/battle_arena.d -I include -I tools/agbcc/include src/battle_arena.c
+tools/scaninc/scaninc -M build/modern/src/battle_bg.d -I include -I tools/agbcc/include src/battle_bg.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_link_opponent.d -I include -I tools/agbcc/include src/battle_controller_link_opponent.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_link_partner.d -I include -I tools/agbcc/include src/battle_controller_link_partner.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_opponent.d -I include -I tools/agbcc/include src/battle_controller_opponent.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_player.d -I include -I tools/agbcc/include src/battle_controller_player.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_player_partner.d -I include -I tools/agbcc/include src/battle_controller_player_partner.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_recorded_opponent.d -I include -I tools/agbcc/include src/battle_controller_recorded_opponent.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_recorded_player.d -I include -I tools/agbcc/include src/battle_controller_recorded_player.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_safari.d -I include -I tools/agbcc/include src/battle_controller_safari.c
+tools/scaninc/scaninc -M build/modern/src/battle_controllers.d -I include -I tools/agbcc/include src/battle_controllers.c
+tools/scaninc/scaninc -M build/modern/src/battle_controller_wally.d -I include -I tools/agbcc/include src/battle_controller_wally.c
+tools/scaninc/scaninc -M build/modern/src/battle_debug.d -I include -I tools/agbcc/include src/battle_debug.c
+tools/scaninc/scaninc -M build/modern/src/battle_dome.d -I include -I tools/agbcc/include src/battle_dome.c
+tools/scaninc/scaninc -M build/modern/src/battle_dynamax.d -I include -I tools/agbcc/include src/battle_dynamax.c
+tools/scaninc/scaninc -M build/modern/src/battle_end_turn.d -I include -I tools/agbcc/include src/battle_end_turn.c
+tools/scaninc/scaninc -M build/modern/src/battle_factory.d -I include -I tools/agbcc/include src/battle_factory.c
+tools/scaninc/scaninc -M build/modern/src/battle_factory_screen.d -I include -I tools/agbcc/include src/battle_factory_screen.c
+tools/scaninc/scaninc -M build/modern/src/battle_gfx_sfx_util.d -I include -I tools/agbcc/include src/battle_gfx_sfx_util.c
+tools/scaninc/scaninc -M build/modern/src/battle_gimmick.d -I include -I tools/agbcc/include src/battle_gimmick.c
+tools/scaninc/scaninc -M build/modern/src/battle_interface.d -I include -I tools/agbcc/include src/battle_interface.c
+tools/scaninc/scaninc -M build/modern/src/battle_intro.d -I include -I tools/agbcc/include src/battle_intro.c
+tools/scaninc/scaninc -M build/modern/src/battle_main.d -I include -I tools/agbcc/include src/battle_main.c
+tools/scaninc/scaninc -M build/modern/src/battle_message.d -I include -I tools/agbcc/include src/battle_message.c
+tools/scaninc/scaninc -M build/modern/src/battle_palace.d -I include -I tools/agbcc/include src/battle_palace.c
+tools/scaninc/scaninc -M build/modern/src/battle_pike.d -I include -I tools/agbcc/include src/battle_pike.c
+tools/scaninc/scaninc -M build/modern/src/battle_pyramid_bag.d -I include -I tools/agbcc/include src/battle_pyramid_bag.c
+tools/scaninc/scaninc -M build/modern/src/battle_pyramid.d -I include -I tools/agbcc/include src/battle_pyramid.c
+tools/scaninc/scaninc -M build/modern/src/battle_records.d -I include -I tools/agbcc/include src/battle_records.c
+tools/scaninc/scaninc -M build/modern/src/battle_script_commands.d -I include -I tools/agbcc/include src/battle_script_commands.c
+tools/scaninc/scaninc -M build/modern/src/battle_setup.d -I include -I tools/agbcc/include src/battle_setup.c
+tools/scaninc/scaninc -M build/modern/src/battle_tent.d -I include -I tools/agbcc/include src/battle_tent.c
+tools/scaninc/scaninc -M build/modern/src/battle_terastal.d -I include -I tools/agbcc/include src/battle_terastal.c
+tools/scaninc/scaninc -M build/modern/src/battle_tower.d -I include -I tools/agbcc/include src/battle_tower.c
+tools/scaninc/scaninc -M build/modern/src/battle_transition.d -I include -I tools/agbcc/include src/battle_transition.c
+tools/scaninc/scaninc -M build/modern/src/battle_transition_frontier.d -I include -I tools/agbcc/include src/battle_transition_frontier.c
+tools/scaninc/scaninc -M build/modern/src/battle_tv.d -I include -I tools/agbcc/include src/battle_tv.c
+tools/scaninc/scaninc -M build/modern/src/battle_util2.d -I include -I tools/agbcc/include src/battle_util2.c
+tools/scaninc/scaninc -M build/modern/src/battle_util.d -I include -I tools/agbcc/include src/battle_util.c
+tools/scaninc/scaninc -M build/modern/src/battle_z_move.d -I include -I tools/agbcc/include src/battle_z_move.c
+tools/scaninc/scaninc -M build/modern/src/berry_blender.d -I include -I tools/agbcc/include src/berry_blender.c
+tools/scaninc/scaninc -M build/modern/src/berry.d -I include -I tools/agbcc/include src/berry.c
+tools/scaninc/scaninc -M build/modern/src/berry_crush.d -I include -I tools/agbcc/include src/berry_crush.c
+tools/scaninc/scaninc -M build/modern/src/berry_fix_graphics.d -I include -I tools/agbcc/include src/berry_fix_graphics.c
+tools/scaninc/scaninc -M build/modern/src/berry_fix_program.d -I include -I tools/agbcc/include src/berry_fix_program.c
+tools/scaninc/scaninc -M build/modern/src/berry_powder.d -I include -I tools/agbcc/include src/berry_powder.c
+tools/scaninc/scaninc -M build/modern/src/berry_tag_screen.d -I include -I tools/agbcc/include src/berry_tag_screen.c
+tools/scaninc/scaninc -M build/modern/src/bg.d -I include -I tools/agbcc/include src/bg.c
+tools/scaninc/scaninc -M build/modern/src/bike.d -I include -I tools/agbcc/include src/bike.c
+tools/scaninc/scaninc -M build/modern/src/birch_pc.d -I include -I tools/agbcc/include src/birch_pc.c
+tools/scaninc/scaninc -M build/modern/src/blit.d -I include -I tools/agbcc/include src/blit.c
+tools/scaninc/scaninc -M build/modern/src/braille.d -I include -I tools/agbcc/include src/braille.c
+tools/scaninc/scaninc -M build/modern/src/braille_puzzles.d -I include -I tools/agbcc/include src/braille_puzzles.c
+tools/scaninc/scaninc -M build/modern/src/cable_car.d -I include -I tools/agbcc/include src/cable_car.c
+tools/scaninc/scaninc -M build/modern/src/cable_club.d -I include -I tools/agbcc/include src/cable_club.c
+tools/scaninc/scaninc -M build/modern/src/caps.d -I include -I tools/agbcc/include src/caps.c
+tools/scaninc/scaninc -M build/modern/src/clear_save_data_screen.d -I include -I tools/agbcc/include src/clear_save_data_screen.c
+tools/scaninc/scaninc -M build/modern/src/clock.d -I include -I tools/agbcc/include src/clock.c
+tools/scaninc/scaninc -M build/modern/src/coins.d -I include -I tools/agbcc/include src/coins.c
+tools/scaninc/scaninc -M build/modern/src/confetti_util.d -I include -I tools/agbcc/include src/confetti_util.c
+tools/scaninc/scaninc -M build/modern/src/contest_ai.d -I include -I tools/agbcc/include src/contest_ai.c
+tools/scaninc/scaninc -M build/modern/src/contest.d -I include -I tools/agbcc/include src/contest.c
+tools/scaninc/scaninc -M build/modern/src/contest_effect.d -I include -I tools/agbcc/include src/contest_effect.c
+tools/scaninc/scaninc -M build/modern/src/contest_link.d -I include -I tools/agbcc/include src/contest_link.c
+tools/scaninc/scaninc -M build/modern/src/contest_link_util.d -I include -I tools/agbcc/include src/contest_link_util.c
+tools/scaninc/scaninc -M build/modern/src/contest_painting.d -I include -I tools/agbcc/include src/contest_painting.c
+tools/scaninc/scaninc -M build/modern/src/contest_util.d -I include -I tools/agbcc/include src/contest_util.c
+tools/scaninc/scaninc -M build/modern/src/coord_event_weather.d -I include -I tools/agbcc/include src/coord_event_weather.c
+tools/scaninc/scaninc -M build/modern/src/credits.d -I include -I tools/agbcc/include src/credits.c
+tools/scaninc/scaninc -M build/modern/src/data.d -I include -I tools/agbcc/include src/data.c
+tools/scaninc/scaninc -M build/modern/src/datetime.d -I include -I tools/agbcc/include src/datetime.c
+tools/scaninc/scaninc -M build/modern/src/daycare.d -I include -I tools/agbcc/include src/daycare.c
+tools/scaninc/scaninc -M build/modern/src/debug.d -I include -I tools/agbcc/include src/debug.c
+tools/scaninc/scaninc -M build/modern/src/decompress.d -I include -I tools/agbcc/include src/decompress.c
+tools/scaninc/scaninc -M build/modern/src/decompress_error_handler.d -I include -I tools/agbcc/include src/decompress_error_handler.c
+tools/scaninc/scaninc -M build/modern/src/decoration.d -I include -I tools/agbcc/include src/decoration.c
+tools/scaninc/scaninc -M build/modern/src/decoration_inventory.d -I include -I tools/agbcc/include src/decoration_inventory.c
+tools/scaninc/scaninc -M build/modern/src/dewford_trend.d -I include -I tools/agbcc/include src/dewford_trend.c
+tools/scaninc/scaninc -M build/modern/src/dexnav.d -I include -I tools/agbcc/include src/dexnav.c
+tools/scaninc/scaninc -M build/modern/src/difficulty.d -I include -I tools/agbcc/include src/difficulty.c
+tools/scaninc/scaninc -M build/modern/src/digit_obj_util.d -I include -I tools/agbcc/include src/digit_obj_util.c
+tools/scaninc/scaninc -M build/modern/src/diploma.d -I include -I tools/agbcc/include src/diploma.c
+tools/scaninc/scaninc -M build/modern/src/dma3_manager.d -I include -I tools/agbcc/include src/dma3_manager.c
+tools/scaninc/scaninc -M build/modern/src/dodrio_berry_picking.d -I include -I tools/agbcc/include src/dodrio_berry_picking.c
+tools/scaninc/scaninc -M build/modern/src/dynamic_placeholder_text_util.d -I include -I tools/agbcc/include src/dynamic_placeholder_text_util.c
+tools/scaninc/scaninc -M build/modern/src/easy_chat.d -I include -I tools/agbcc/include src/easy_chat.c
+tools/scaninc/scaninc -M build/modern/src/egg_hatch.d -I include -I tools/agbcc/include src/egg_hatch.c
+tools/scaninc/scaninc -M build/modern/src/ereader_helpers.d -I include -I tools/agbcc/include src/ereader_helpers.c
+tools/scaninc/scaninc -M build/modern/src/ereader_screen.d -I include -I tools/agbcc/include src/ereader_screen.c
+tools/scaninc/scaninc -M build/modern/src/event_data.d -I include -I tools/agbcc/include src/event_data.c
+tools/scaninc/scaninc -M build/modern/src/event_object_lock.d -I include -I tools/agbcc/include src/event_object_lock.c
+tools/scaninc/scaninc -M build/modern/src/event_object_movement.d -I include -I tools/agbcc/include src/event_object_movement.c
+tools/scaninc/scaninc -M build/modern/src/evolution_graphics.d -I include -I tools/agbcc/include src/evolution_graphics.c
+tools/scaninc/scaninc -M build/modern/src/evolution_scene.d -I include -I tools/agbcc/include src/evolution_scene.c
+tools/scaninc/scaninc -M build/modern/src/expansion_intro.d -I include -I tools/agbcc/include src/expansion_intro.c
+tools/scaninc/scaninc -M build/modern/src/fake_rtc.d -I include -I tools/agbcc/include src/fake_rtc.c
+tools/scaninc/scaninc -M build/modern/src/faraway_island.d -I include -I tools/agbcc/include src/faraway_island.c
+tools/scaninc/scaninc -M build/modern/src/field_camera.d -I include -I tools/agbcc/include src/field_camera.c
+tools/scaninc/scaninc -M build/modern/src/field_control_avatar.d -I include -I tools/agbcc/include src/field_control_avatar.c
+tools/scaninc/scaninc -M build/modern/src/field_door.d -I include -I tools/agbcc/include src/field_door.c
+tools/scaninc/scaninc -M build/modern/src/field_effect.d -I include -I tools/agbcc/include src/field_effect.c
+tools/scaninc/scaninc -M build/modern/src/field_effect_helpers.d -I include -I tools/agbcc/include src/field_effect_helpers.c
+tools/scaninc/scaninc -M build/modern/src/fieldmap.d -I include -I tools/agbcc/include src/fieldmap.c
+tools/scaninc/scaninc -M build/modern/src/field_message_box.d -I include -I tools/agbcc/include src/field_message_box.c
+tools/scaninc/scaninc -M build/modern/src/field_move.d -I include -I tools/agbcc/include src/field_move.c
+tools/scaninc/scaninc -M build/modern/src/field_player_avatar.d -I include -I tools/agbcc/include src/field_player_avatar.c
+tools/scaninc/scaninc -M build/modern/src/field_poison.d -I include -I tools/agbcc/include src/field_poison.c
+tools/scaninc/scaninc -M build/modern/src/field_region_map.d -I include -I tools/agbcc/include src/field_region_map.c
+tools/scaninc/scaninc -M build/modern/src/field_screen_effect.d -I include -I tools/agbcc/include src/field_screen_effect.c
+tools/scaninc/scaninc -M build/modern/src/field_specials.d -I include -I tools/agbcc/include src/field_specials.c
+tools/scaninc/scaninc -M build/modern/src/field_special_scene.d -I include -I tools/agbcc/include src/field_special_scene.c
+tools/scaninc/scaninc -M build/modern/src/field_tasks.d -I include -I tools/agbcc/include src/field_tasks.c
+tools/scaninc/scaninc -M build/modern/src/field_weather.d -I include -I tools/agbcc/include src/field_weather.c
+tools/scaninc/scaninc -M build/modern/src/field_weather_effect.d -I include -I tools/agbcc/include src/field_weather_effect.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_cut.d -I include -I tools/agbcc/include src/fldeff_cut.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_defog.d -I include -I tools/agbcc/include src/fldeff_defog.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_dig.d -I include -I tools/agbcc/include src/fldeff_dig.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_escalator.d -I include -I tools/agbcc/include src/fldeff_escalator.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_flash.d -I include -I tools/agbcc/include src/fldeff_flash.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_misc.d -I include -I tools/agbcc/include src/fldeff_misc.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_rocksmash.d -I include -I tools/agbcc/include src/fldeff_rocksmash.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_softboiled.d -I include -I tools/agbcc/include src/fldeff_softboiled.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_strength.d -I include -I tools/agbcc/include src/fldeff_strength.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_sweetscent.d -I include -I tools/agbcc/include src/fldeff_sweetscent.c
+tools/scaninc/scaninc -M build/modern/src/fldeff_teleport.d -I include -I tools/agbcc/include src/fldeff_teleport.c
+tools/scaninc/scaninc -M build/modern/src/follower_helper.d -I include -I tools/agbcc/include src/follower_helper.c
+tools/scaninc/scaninc -M build/modern/src/follower_npc.d -I include -I tools/agbcc/include src/follower_npc.c
+tools/scaninc/scaninc -M build/modern/src/fonts.d -I include -I tools/agbcc/include src/fonts.c
+tools/scaninc/scaninc -M build/modern/src/frontier_pass.d -I include -I tools/agbcc/include src/frontier_pass.c
+tools/scaninc/scaninc -M build/modern/src/frontier_util.d -I include -I tools/agbcc/include src/frontier_util.c
+tools/scaninc/scaninc -M build/modern/src/generational_changes.d -I include -I tools/agbcc/include src/generational_changes.c
+tools/scaninc/scaninc -M build/modern/src/gpu_regs.d -I include -I tools/agbcc/include src/gpu_regs.c
+tools/scaninc/scaninc -M build/modern/src/graphics.d -I include -I tools/agbcc/include src/graphics.c
+tools/scaninc/scaninc -M build/modern/src/gym_leader_rematch.d -I include -I tools/agbcc/include src/gym_leader_rematch.c
+tools/scaninc/scaninc -M build/modern/src/hall_of_fame.d -I include -I tools/agbcc/include src/hall_of_fame.c
+tools/scaninc/scaninc -M build/modern/src/heal_location.d -I include -I tools/agbcc/include src/heal_location.c
+tools/scaninc/scaninc -M build/modern/src/hof_pc.d -I include -I tools/agbcc/include src/hof_pc.c
+tools/scaninc/scaninc -M build/modern/src/image_processing_effects.d -I include -I tools/agbcc/include src/image_processing_effects.c
+tools/scaninc/scaninc -M build/modern/src/international_string_util.d -I include -I tools/agbcc/include src/international_string_util.c
+tools/scaninc/scaninc -M build/modern/src/intro.d -I include -I tools/agbcc/include src/intro.c
+tools/scaninc/scaninc -M build/modern/src/intro_credits_graphics.d -I include -I tools/agbcc/include src/intro_credits_graphics.c
+tools/scaninc/scaninc -M build/modern/src/io_reg.d -I include -I tools/agbcc/include src/io_reg.c
+tools/scaninc/scaninc -M build/modern/src/item_ball.d -I include -I tools/agbcc/include src/item_ball.c
+tools/scaninc/scaninc -M build/modern/src/item.d -I include -I tools/agbcc/include src/item.c
+tools/scaninc/scaninc -M build/modern/src/item_icon.d -I include -I tools/agbcc/include src/item_icon.c
+tools/scaninc/scaninc -M build/modern/src/item_menu.d -I include -I tools/agbcc/include src/item_menu.c
+tools/scaninc/scaninc -M build/modern/src/item_menu_icons.d -I include -I tools/agbcc/include src/item_menu_icons.c
+tools/scaninc/scaninc -M build/modern/src/item_use.d -I include -I tools/agbcc/include src/item_use.c
+tools/scaninc/scaninc -M build/modern/src/landmark.d -I include -I tools/agbcc/include src/landmark.c
+tools/scaninc/scaninc -M build/modern/src/libisagbprn.d -I include -I tools/agbcc/include src/libisagbprn.c
+tools/scaninc/scaninc -M build/modern/src/librfu_intr.d -I include -I tools/agbcc/include src/librfu_intr.c
+tools/scaninc/scaninc -M build/modern/src/librfu_rfu.d -I include -I tools/agbcc/include src/librfu_rfu.c
+tools/scaninc/scaninc -M build/modern/src/librfu_sio32id.d -I include -I tools/agbcc/include src/librfu_sio32id.c
+tools/scaninc/scaninc -M build/modern/src/librfu_stwi.d -I include -I tools/agbcc/include src/librfu_stwi.c
+tools/scaninc/scaninc -M build/modern/src/lilycove_lady.d -I include -I tools/agbcc/include src/lilycove_lady.c
+tools/scaninc/scaninc -M build/modern/src/line_break.d -I include -I tools/agbcc/include src/line_break.c
+tools/scaninc/scaninc -M build/modern/src/link.d -I include -I tools/agbcc/include src/link.c
+tools/scaninc/scaninc -M build/modern/src/link_rfu_2.d -I include -I tools/agbcc/include src/link_rfu_2.c
+tools/scaninc/scaninc -M build/modern/src/link_rfu_3.d -I include -I tools/agbcc/include src/link_rfu_3.c
+tools/scaninc/scaninc -M build/modern/src/list_menu.d -I include -I tools/agbcc/include src/list_menu.c
+tools/scaninc/scaninc -M build/modern/src/load_save.d -I include -I tools/agbcc/include src/load_save.c
+tools/scaninc/scaninc -M build/modern/src/lottery_corner.d -I include -I tools/agbcc/include src/lottery_corner.c
+tools/scaninc/scaninc -M build/modern/src/m4a.d -I include -I tools/agbcc/include src/m4a.c
+tools/scaninc/scaninc -M build/modern/src/m4a_tables.d -I include -I tools/agbcc/include src/m4a_tables.c
+tools/scaninc/scaninc -M build/modern/src/mail.d -I include -I tools/agbcc/include src/mail.c
+tools/scaninc/scaninc -M build/modern/src/mail_data.d -I include -I tools/agbcc/include src/mail_data.c
+tools/scaninc/scaninc -M build/modern/src/main.d -I include -I tools/agbcc/include src/main.c
+tools/scaninc/scaninc -M build/modern/src/main_menu.d -I include -I tools/agbcc/include src/main_menu.c
+tools/scaninc/scaninc -M build/modern/src/malloc.d -I include -I tools/agbcc/include src/malloc.c
+tools/scaninc/scaninc -M build/modern/src/map_name_popup.d -I include -I tools/agbcc/include src/map_name_popup.c
+tools/scaninc/scaninc -M build/modern/src/match_call.d -I include -I tools/agbcc/include src/match_call.c
+tools/scaninc/scaninc -M build/modern/src/math_util.d -I include -I tools/agbcc/include src/math_util.c
+tools/scaninc/scaninc -M build/modern/src/mauville_old_man.d -I include -I tools/agbcc/include src/mauville_old_man.c
+tools/scaninc/scaninc -M build/modern/src/menu.d -I include -I tools/agbcc/include src/menu.c
+tools/scaninc/scaninc -M build/modern/src/menu_helpers.d -I include -I tools/agbcc/include src/menu_helpers.c
+tools/scaninc/scaninc -M build/modern/src/menu_specialized.d -I include -I tools/agbcc/include src/menu_specialized.c
+tools/scaninc/scaninc -M build/modern/src/metatile_behavior.d -I include -I tools/agbcc/include src/metatile_behavior.c
+tools/scaninc/scaninc -M build/modern/src/minigame_countdown.d -I include -I tools/agbcc/include src/minigame_countdown.c
+tools/scaninc/scaninc -M build/modern/src/mini_printf.d -I include -I tools/agbcc/include src/mini_printf.c
+tools/scaninc/scaninc -M build/modern/src/mirage_tower.d -I include -I tools/agbcc/include src/mirage_tower.c
+tools/scaninc/scaninc -M build/modern/src/money.d -I include -I tools/agbcc/include src/money.c
+tools/scaninc/scaninc -M build/modern/src/mon_markings.d -I include -I tools/agbcc/include src/mon_markings.c
+tools/scaninc/scaninc -M build/modern/src/move.d -I include -I tools/agbcc/include src/move.c
+tools/scaninc/scaninc -M build/modern/src/move_relearner.d -I include -I tools/agbcc/include src/move_relearner.c
+tools/scaninc/scaninc -M build/modern/src/multiboot.d -I include -I tools/agbcc/include src/multiboot.c
+tools/scaninc/scaninc -M build/modern/src/mystery_event_menu.d -I include -I tools/agbcc/include src/mystery_event_menu.c
+tools/scaninc/scaninc -M build/modern/src/mystery_event_msg.d -I include -I tools/agbcc/include src/mystery_event_msg.c
+tools/scaninc/scaninc -M build/modern/src/mystery_event_script.d -I include -I tools/agbcc/include src/mystery_event_script.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift.d -I include -I tools/agbcc/include src/mystery_gift.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift_client.d -I include -I tools/agbcc/include src/mystery_gift_client.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift_link.d -I include -I tools/agbcc/include src/mystery_gift_link.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift_menu.d -I include -I tools/agbcc/include src/mystery_gift_menu.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift_scripts.d -I include -I tools/agbcc/include src/mystery_gift_scripts.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift_server.d -I include -I tools/agbcc/include src/mystery_gift_server.c
+tools/scaninc/scaninc -M build/modern/src/mystery_gift_view.d -I include -I tools/agbcc/include src/mystery_gift_view.c
+tools/scaninc/scaninc -M build/modern/src/naming_screen.d -I include -I tools/agbcc/include src/naming_screen.c
+tools/scaninc/scaninc -M build/modern/src/new_game.d -I include -I tools/agbcc/include src/new_game.c
+tools/scaninc/scaninc -M build/modern/src/option_menu.d -I include -I tools/agbcc/include src/option_menu.c
+tools/scaninc/scaninc -M build/modern/src/overworld.d -I include -I tools/agbcc/include src/overworld.c
+tools/scaninc/scaninc -M build/modern/src/palette.d -I include -I tools/agbcc/include src/palette.c
+tools/scaninc/scaninc -M build/modern/src/palette_util.d -I include -I tools/agbcc/include src/palette_util.c
+tools/scaninc/scaninc -M build/modern/src/party_menu.d -I include -I tools/agbcc/include src/party_menu.c
+tools/scaninc/scaninc -M build/modern/src/player_pc.d -I include -I tools/agbcc/include src/player_pc.c
+tools/scaninc/scaninc -M build/modern/src/play_time.d -I include -I tools/agbcc/include src/play_time.c
+tools/scaninc/scaninc -M build/modern/src/pokeball.d -I include -I tools/agbcc/include src/pokeball.c
+tools/scaninc/scaninc -M build/modern/src/pokeblock.d -I include -I tools/agbcc/include src/pokeblock.c
+tools/scaninc/scaninc -M build/modern/src/pokeblock_feed.d -I include -I tools/agbcc/include src/pokeblock_feed.c
+tools/scaninc/scaninc -M build/modern/src/pokedex_area_region_map.d -I include -I tools/agbcc/include src/pokedex_area_region_map.c
+tools/scaninc/scaninc -M build/modern/src/pokedex_area_screen.d -I include -I tools/agbcc/include src/pokedex_area_screen.c
+tools/scaninc/scaninc -M build/modern/src/pokedex.d -I include -I tools/agbcc/include src/pokedex.c
+tools/scaninc/scaninc -M build/modern/src/pokedex_cry_screen.d -I include -I tools/agbcc/include src/pokedex_cry_screen.c
+tools/scaninc/scaninc -M build/modern/src/pokedex_plus_hgss.d -I include -I tools/agbcc/include src/pokedex_plus_hgss.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_animation.d -I include -I tools/agbcc/include src/pokemon_animation.c
+tools/scaninc/scaninc -M build/modern/src/pokemon.d -I include -I tools/agbcc/include src/pokemon.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_icon.d -I include -I tools/agbcc/include src/pokemon_icon.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_jump.d -I include -I tools/agbcc/include src/pokemon_jump.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_size_record.d -I include -I tools/agbcc/include src/pokemon_size_record.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_sprite_visualizer.d -I include -I tools/agbcc/include src/pokemon_sprite_visualizer.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_storage_system.d -I include -I tools/agbcc/include src/pokemon_storage_system.c
+tools/scaninc/scaninc -M build/modern/src/pokemon_summary_screen.d -I include -I tools/agbcc/include src/pokemon_summary_screen.c
+tools/scaninc/scaninc -M build/modern/src/pokenav.d -I include -I tools/agbcc/include src/pokenav.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_conditions.d -I include -I tools/agbcc/include src/pokenav_conditions.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_conditions_gfx.d -I include -I tools/agbcc/include src/pokenav_conditions_gfx.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_conditions_search_results.d -I include -I tools/agbcc/include src/pokenav_conditions_search_results.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_list.d -I include -I tools/agbcc/include src/pokenav_list.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_main_menu.d -I include -I tools/agbcc/include src/pokenav_main_menu.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_match_call_data.d -I include -I tools/agbcc/include src/pokenav_match_call_data.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_match_call_gfx.d -I include -I tools/agbcc/include src/pokenav_match_call_gfx.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_match_call_list.d -I include -I tools/agbcc/include src/pokenav_match_call_list.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_menu_handler.d -I include -I tools/agbcc/include src/pokenav_menu_handler.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_menu_handler_gfx.d -I include -I tools/agbcc/include src/pokenav_menu_handler_gfx.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_region_map.d -I include -I tools/agbcc/include src/pokenav_region_map.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_ribbons_list.d -I include -I tools/agbcc/include src/pokenav_ribbons_list.c
+tools/scaninc/scaninc -M build/modern/src/pokenav_ribbons_summary.d -I include -I tools/agbcc/include src/pokenav_ribbons_summary.c
+tools/scaninc/scaninc -M build/modern/src/post_battle_event_funcs.d -I include -I tools/agbcc/include src/post_battle_event_funcs.c
+tools/scaninc/scaninc -M build/modern/src/random.d -I include -I tools/agbcc/include src/random.c
+tools/scaninc/scaninc -M build/modern/src/rayquaza_scene.d -I include -I tools/agbcc/include src/rayquaza_scene.c
+tools/scaninc/scaninc -M build/modern/src/recorded_battle.d -I include -I tools/agbcc/include src/recorded_battle.c
+tools/scaninc/scaninc -M build/modern/src/record_mixing.d -I include -I tools/agbcc/include src/record_mixing.c
+tools/scaninc/scaninc -M build/modern/src/region_map.d -I include -I tools/agbcc/include src/region_map.c
+tools/scaninc/scaninc -M build/modern/src/reload_save.d -I include -I tools/agbcc/include src/reload_save.c
+tools/scaninc/scaninc -M build/modern/src/reset_rtc_screen.d -I include -I tools/agbcc/include src/reset_rtc_screen.c
+tools/scaninc/scaninc -M build/modern/src/reshow_battle_screen.d -I include -I tools/agbcc/include src/reshow_battle_screen.c
+tools/scaninc/scaninc -M build/modern/src/roamer.d -I include -I tools/agbcc/include src/roamer.c
+tools/scaninc/scaninc -M build/modern/src/rom_header_gf.d -I include -I tools/agbcc/include src/rom_header_gf.c
+tools/scaninc/scaninc -M build/modern/src/rom_header_rhh.d -I include -I tools/agbcc/include src/rom_header_rhh.c
+tools/scaninc/scaninc -M build/modern/src/rotating_gate.d -I include -I tools/agbcc/include src/rotating_gate.c
+tools/scaninc/scaninc -M build/modern/src/rotating_tile_puzzle.d -I include -I tools/agbcc/include src/rotating_tile_puzzle.c
+tools/scaninc/scaninc -M build/modern/src/roulette.d -I include -I tools/agbcc/include src/roulette.c
+tools/scaninc/scaninc -M build/modern/src/rtc.d -I include -I tools/agbcc/include src/rtc.c
+tools/scaninc/scaninc -M build/modern/src/safari_zone.d -I include -I tools/agbcc/include src/safari_zone.c
+tools/scaninc/scaninc -M build/modern/src/save.d -I include -I tools/agbcc/include src/save.c
+tools/scaninc/scaninc -M build/modern/src/save_failed_screen.d -I include -I tools/agbcc/include src/save_failed_screen.c
+tools/scaninc/scaninc -M build/modern/src/save_location.d -I include -I tools/agbcc/include src/save_location.c
+tools/scaninc/scaninc -M build/modern/src/scanline_effect.d -I include -I tools/agbcc/include src/scanline_effect.c
+tools/scaninc/scaninc -M build/modern/src/scrcmd.d -I include -I tools/agbcc/include src/scrcmd.c
+tools/scaninc/scaninc -M build/modern/src/script.d -I include -I tools/agbcc/include src/script.c
+tools/scaninc/scaninc -M build/modern/src/script_menu.d -I include -I tools/agbcc/include src/script_menu.c
+tools/scaninc/scaninc -M build/modern/src/script_movement.d -I include -I tools/agbcc/include src/script_movement.c
+tools/scaninc/scaninc -M build/modern/src/script_pokemon_util.d -I include -I tools/agbcc/include src/script_pokemon_util.c
+tools/scaninc/scaninc -M build/modern/src/secret_base.d -I include -I tools/agbcc/include src/secret_base.c
+tools/scaninc/scaninc -M build/modern/src/shop.d -I include -I tools/agbcc/include src/shop.c
+tools/scaninc/scaninc -M build/modern/src/siirtc.d -I include -I tools/agbcc/include src/siirtc.c
+tools/scaninc/scaninc -M build/modern/src/slot_machine.d -I include -I tools/agbcc/include src/slot_machine.c
+tools/scaninc/scaninc -M build/modern/src/sound.d -I include -I tools/agbcc/include src/sound.c
+tools/scaninc/scaninc -M build/modern/src/sprays.d -I include -I tools/agbcc/include src/sprays.c
+tools/scaninc/scaninc -M build/modern/src/sprite.d -I include -I tools/agbcc/include src/sprite.c
+tools/scaninc/scaninc -M build/modern/src/starter_choose.d -I include -I tools/agbcc/include src/starter_choose.c
+tools/scaninc/scaninc -M build/modern/src/start_menu.d -I include -I tools/agbcc/include src/start_menu.c
+tools/scaninc/scaninc -M build/modern/src/strings.d -I include -I tools/agbcc/include src/strings.c
+tools/scaninc/scaninc -M build/modern/src/string_util.d -I include -I tools/agbcc/include src/string_util.c
+tools/scaninc/scaninc -M build/modern/src/task.d -I include -I tools/agbcc/include src/task.c
+tools/scaninc/scaninc -M build/modern/src/test_runner_stub.d -I include -I tools/agbcc/include src/test_runner_stub.c
+tools/scaninc/scaninc -M build/modern/src/text.d -I include -I tools/agbcc/include src/text.c
+tools/scaninc/scaninc -M build/modern/src/text_input_strings.d -I include -I tools/agbcc/include src/text_input_strings.c
+tools/scaninc/scaninc -M build/modern/src/text_window.d -I include -I tools/agbcc/include src/text_window.c
+tools/scaninc/scaninc -M build/modern/src/tileset_anims.d -I include -I tools/agbcc/include src/tileset_anims.c
+tools/scaninc/scaninc -M build/modern/src/tilesets.d -I include -I tools/agbcc/include src/tilesets.c
+tools/scaninc/scaninc -M build/modern/src/time_events.d -I include -I tools/agbcc/include src/time_events.c
+tools/scaninc/scaninc -M build/modern/src/title_screen.d -I include -I tools/agbcc/include src/title_screen.c
+tools/scaninc/scaninc -M build/modern/src/trade.d -I include -I tools/agbcc/include src/trade.c
+tools/scaninc/scaninc -M build/modern/src/trader.d -I include -I tools/agbcc/include src/trader.c
+tools/scaninc/scaninc -M build/modern/src/trainer_card.d -I include -I tools/agbcc/include src/trainer_card.c
+tools/scaninc/scaninc -M build/modern/src/trainer_hill.d -I include -I tools/agbcc/include src/trainer_hill.c
+tools/scaninc/scaninc -M build/modern/src/trainer_pokemon_sprites.d -I include -I tools/agbcc/include src/trainer_pokemon_sprites.c
+tools/scaninc/scaninc -M build/modern/src/trainer_pools.d -I include -I tools/agbcc/include src/trainer_pools.c
+tools/scaninc/scaninc -M build/modern/src/trainer_see.d -I include -I tools/agbcc/include src/trainer_see.c
+tools/scaninc/scaninc -M build/modern/src/trainer_slide.d -I include -I tools/agbcc/include src/trainer_slide.c
+tools/scaninc/scaninc -M build/modern/src/trig.d -I include -I tools/agbcc/include src/trig.c
+tools/scaninc/scaninc -M build/modern/src/tv.d -I include -I tools/agbcc/include src/tv.c
+tools/scaninc/scaninc -M build/modern/src/type_icons.d -I include -I tools/agbcc/include src/type_icons.c
+tools/scaninc/scaninc -M build/modern/src/union_room_battle.d -I include -I tools/agbcc/include src/union_room_battle.c
+tools/scaninc/scaninc -M build/modern/src/union_room.d -I include -I tools/agbcc/include src/union_room.c
+tools/scaninc/scaninc -M build/modern/src/union_room_chat.d -I include -I tools/agbcc/include src/union_room_chat.c
+tools/scaninc/scaninc -M build/modern/src/union_room_player_avatar.d -I include -I tools/agbcc/include src/union_room_player_avatar.c
+tools/scaninc/scaninc -M build/modern/src/use_pokeblock.d -I include -I tools/agbcc/include src/use_pokeblock.c
+tools/scaninc/scaninc -M build/modern/src/util.d -I include -I tools/agbcc/include src/util.c
+tools/scaninc/scaninc -M build/modern/src/vs_seeker.d -I include -I tools/agbcc/include src/vs_seeker.c
+tools/scaninc/scaninc -M build/modern/src/walda_phrase.d -I include -I tools/agbcc/include src/walda_phrase.c
+tools/scaninc/scaninc -M build/modern/src/wallclock.d -I include -I tools/agbcc/include src/wallclock.c
+tools/scaninc/scaninc -M build/modern/src/wild_encounter.d -I include -I tools/agbcc/include src/wild_encounter.c
+tools/scaninc/scaninc -M build/modern/src/window.d -I include -I tools/agbcc/include src/window.c
+tools/scaninc/scaninc -M build/modern/src/wireless_communication_status_screen.d -I include -I tools/agbcc/include src/wireless_communication_status_screen.c
+tools/scaninc/scaninc -M build/modern/src/wonder_news.d -I include -I tools/agbcc/include src/wonder_news.c
+tools/scaninc/scaninc -M build/modern/src/crt0.d -I include -I "" src/crt0.s
+tools/scaninc/scaninc -M build/modern/src/decompress_asm.d -I include -I "" src/decompress_asm.s
+tools/scaninc/scaninc -M build/modern/src/libgcnmultiboot.d -I include -I "" src/libgcnmultiboot.s
+tools/scaninc/scaninc -M build/modern/src/m4a_1.d -I include -I "" src/m4a_1.s
+tools/scaninc/scaninc -M build/modern/src/rom_header.d -I include -I "" src/rom_header.s
+tools/scaninc/scaninc -M build/modern/data/battle_anim_scripts.d -I include -I "" data/battle_anim_scripts.s
+tools/scaninc/scaninc -M build/modern/data/battle_scripts_1.d -I include -I "" data/battle_scripts_1.s
+tools/scaninc/scaninc -M build/modern/data/battle_scripts_2.d -I include -I "" data/battle_scripts_2.s
+tools/scaninc/scaninc -M build/modern/data/contest_ai_scripts.d -I include -I "" data/contest_ai_scripts.s
+tools/scaninc/scaninc -M build/modern/data/event_scripts.d -I include -I "" data/event_scripts.s
+tools/scaninc/scaninc -M build/modern/data/field_effect_scripts.d -I include -I "" data/field_effect_scripts.s
+tools/scaninc/scaninc -M build/modern/data/multiboot_berry_glitch_fix.d -I include -I "" data/multiboot_berry_glitch_fix.s
+tools/scaninc/scaninc -M build/modern/data/multiboot_ereader.d -I include -I "" data/multiboot_ereader.s
+tools/scaninc/scaninc -M build/modern/data/multiboot_pokemon_colosseum.d -I include -I "" data/multiboot_pokemon_colosseum.s
+tools/scaninc/scaninc -M build/modern/data/mystery_event_script_cmd_table.d -I include -I "" data/mystery_event_script_cmd_table.s
+tools/scaninc/scaninc -M build/modern/data/mystery_gift.d -I include -I "" data/mystery_gift.s
+tools/scaninc/scaninc -M build/modern/data/sound_data.d -I include -I "" data/sound_data.s
+make[2]: 'poryscript' is up to date.
+python3 tools/learnset_helpers/make_learnables.py tools/learnset_helpers/porymoves_files tools/learnset_helpers/build/all_learnables.json
+python3 tools/learnset_helpers/make_teachables.py tools/learnset_helpers/build/all_learnables.json
+tools/scaninc/scaninc -M build/modern/src/pokemon.d -I include -I tools/agbcc/include src/pokemon.c
+make[2]: 'poryscript' is up to date.
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_IntrWait=1 -o IntrWait.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_RegisterRamReset=1 -o RegisterRamReset.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_Sqrt=1 -o Sqrt.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MusicPlayerOpen=1 -o MusicPlayerOpen.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundBiasReset=1 -o SoundBiasReset.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundDriverVSyncOn=1 -o SoundDriverVSyncOn.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_Mod=1 -o Mod.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_VBlankIntrWait=1 -o VBlankIntrWait.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MusicPlayerStart=1 -o MusicPlayerStart.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundDriverVSyncOff=1 -o SoundDriverVSyncOff.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_HuffUnComp=1 -o HuffUnComp.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoftResetExram=1 -o SoftResetExram.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MusicPlayerFadeOut=1 -o MusicPlayerFadeOut.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_LZ77UnCompWram=1 -o LZ77UnCompWram.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundDriverMain=1 -o SoundDriverMain.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundBiasChange=1 -o SoundBiasChange.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_LZ77UnCompVram=1 -o LZ77UnCompVram.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_ArcTan2=1 -o ArcTan2.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MusicPlayerStop=1 -o MusicPlayerStop.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_DivArm=1 -o DivArm.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_ModArm=1 -o ModArm.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundDriverVSync=1 -o SoundDriverVSync.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundDriverInit=1 -o SoundDriverInit.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_BgAffineSet=1 -o BgAffineSet.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_Diff8bitUnFilterWram=1 -o Diff8bitUnFilterWram.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MultiBoot=1 -o MultiBoot.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MidiKey2Freq=1 -o MidiKey2Freq.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_Div=1 -o Div.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_Diff8bitUnFilterVram=1 -o Diff8bitUnFilterVram.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_ArcTan=1 -o ArcTan.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_ObjAffineSet=1 -o ObjAffineSet.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoftResetRom=1 -o SoftResetRom.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundDriverMode=1 -o SoundDriverMode.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_RLUnCompWram=1 -o RLUnCompWram.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_BitUnPack=1 -o BitUnPack.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundChannelClear=1 -o SoundChannelClear.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_CpuFastSet=1 -o CpuFastSet.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_CpuSet=1 -o CpuSet.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_Diff16bitUnFilter=1 -o Diff16bitUnFilter.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoundBiasSet=1 -o SoundBiasSet.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_MusicPlayerContinue=1 -o MusicPlayerContinue.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_SoftReset=1 -o SoftReset.o libagbsyscall.s
+arm-none-eabi-as -mcpu=arm7tdmi --defsym L_RLUnCompVram=1 -o RLUnCompVram.o libagbsyscall.s
+arm-none-eabi-ar rc libagbsyscall.a IntrWait.o RegisterRamReset.o Sqrt.o MusicPlayerOpen.o SoundBiasReset.o SoundDriverVSyncOn.o Mod.o VBlankIntrWait.o MusicPlayerStart.o SoundDriverVSyncOff.o HuffUnComp.o SoftResetExram.o MusicPlayerFadeOut.o LZ77UnCompWram.o SoundDriverMain.o SoundBiasChange.o LZ77UnCompVram.o ArcTan2.o MusicPlayerStop.o DivArm.o ModArm.o SoundDriverVSync.o SoundDriverInit.o BgAffineSet.o Diff8bitUnFilterWram.o MultiBoot.o MidiKey2Freq.o Div.o Diff8bitUnFilterVram.o ArcTan.o ObjAffineSet.o SoftResetRom.o SoundDriverMode.o RLUnCompWram.o BitUnPack.o SoundChannelClear.o CpuFastSet.o CpuSet.o Diff16bitUnFilter.o SoundBiasSet.o MusicPlayerContinue.o SoftReset.o RLUnCompVram.o
+/usr/lib/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/modern/src/agb_flash_1m.o src/agb_flash_1m.c
+/usr/lib/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/modern/src/agb_flash.o src/agb_flash.c
+/usr/lib/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/modern/src/agb_flash_le.o src/agb_flash_le.c
+/usr/lib/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/modern/src/agb_flash_mx.o src/agb_flash_mx.c
+/usr/lib/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/modern/src/AgbRfu_LinkManager.o src/AgbRfu_LinkManager.c
+/usr/lib/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/modern/src/apprentice.o src/apprentice.c
+In file included from include/battle_main.h:5,
+                 from include/battle.h:7,
+                 from src/apprentice.c:3:
+include/data.h:228:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  228 | static inline const enum TrainerClassID GetTrainerClassFromId(u16 trainerId)
+      |               ^~~~~
+include/data.h:254:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  254 | static inline const u8 GetTrainerPicFromId(u16 trainerId)
+      |               ^~~~~
+include/data.h:264:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  264 | static inline const u8 GetTrainerBackPicFromId(u16 trainerId)
+      |               ^~~~~
+include/data.h:274:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  274 | static inline const u8 GetTrainerStartingStatusFromId(u16 trainerId)
+      |               ^~~~~
+include/data.h:279:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  279 | static inline const enum TrainerBattleType GetTrainerBattleType(u16 trainerId)
+      |               ^~~~~
+include/data.h:284:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  284 | static inline const u8 GetTrainerPartySizeFromId(u16 trainerId)
+      |               ^~~~~
+include/data.h:289:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  289 | static inline const bool32 DoesTrainerHaveMugshot(u16 trainerId)
+      |               ^~~~~
+include/data.h:294:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  294 | static inline const u8 GetTrainerMugshotColorFromId(u16 trainerId)
+      |               ^~~~~
+include/data.h:309:15: error: type qualifiers ignored on function return type [-Werror=ignored-qualifiers]
+  309 | static inline const u64 GetTrainerAIFlagsFromId(u16 trainerId)
+      |               ^~~~~
+In file included from include/battle.h:21:
+include/generational_changes.h: In function 'SetGenConfig':
+include/generational_changes.h:71:51: warning: unused parameter 'configTag' [-Wunused-parameter]
+   71 | static inline void SetGenConfig(enum GenConfigTag configTag, u32 value)
+      |                                 ~~~~~~~~~~~~~~~~~~^~~~~~~~~
+include/generational_changes.h:71:66: warning: unused parameter 'value' [-Wunused-parameter]
+   71 | static inline void SetGenConfig(enum GenConfigTag configTag, u32 value)
+      |                                                              ~~~~^~~~~
+cc1: all warnings being treated as errors
+make: *** [Makefile:414: build/modern/src/apprentice.o] Error 1
+make: *** Deleting file 'build/modern/src/apprentice.o'
