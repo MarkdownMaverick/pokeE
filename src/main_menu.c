@@ -67,7 +67,6 @@ static void Task_DisplayMainMenuInvalidActionError(u8);
 static void LoadMainMenuWindowFrameTiles(u8, u16);
 static void DrawMainMenuWindowBorder(const struct WindowTemplate *, u16);
 static void Task_HighlightSelectedMainMenuItem(u8);
-static void Task_NewGameBirchSpeech_Cleanup(u8);
 static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
 static void MainMenu_FormatSavegameTime(void);
@@ -1075,48 +1074,14 @@ break;
 
 static void Task_NewGameBirchSpeech_Init(u8 taskId)
 {
-SetGpuReg(REG_OFFSET_DISPCNT, 0);
-SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
-SetGpuReg(REG_OFFSET_WIN0H, 0);
-SetGpuReg(REG_OFFSET_WIN0V, 0);
-SetGpuReg(REG_OFFSET_WININ, 0);
-SetGpuReg(REG_OFFSET_WINOUT, 0);
-SetGpuReg(REG_OFFSET_BLDCNT, 0);
-SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-SetGpuReg(REG_OFFSET_BLDY, 0);
-ScanlineEffect_Stop();
-ResetSpriteData();
-FreeAllSpritePalettes();
-ResetAllPicSprites();
-gTasks[taskId].tBG1HOFS = 0;
+
 gSaveBlock2Ptr->playerGender = 0;
 StringCopy(gSaveBlock2Ptr->playerName, COMPOUND_STRING("KAI"));
-gTasks[taskId].func = Task_NewGameBirchSpeech_Cleanup;
-gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
-gTasks[taskId].data[3] = 0xFF;
-gTasks[taskId].tTimer = 0x0;
-ShowBg(0);
-ShowBg(1);
-}
-
-#define tState data[0]
-
-#undef tState
-
-
-
-
-static void Task_NewGameBirchSpeech_Cleanup(u8 taskId)
-{
-if (!gPaletteFade.active)
-{
-FreeAllWindowBuffers();
-FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
-ResetAllPicSprites();
 SetMainCallback2(CB2_NewGame);
-DestroyTask(taskId);
+
 }
-}
+
+
 
 
 

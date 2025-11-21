@@ -58,43 +58,26 @@ static const u8 sSSTidalSailWestMovementScript[] =
 #define tTaskId1 data[2]
 #define tTaskId2 data[3]
 
-static void Task_HandleDOCKSSequence(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
-
-    switch (tState)
-    {
-    case 0:
-        tTimer++;
-        if (tTimer == 10)
-        {
-            SetCameraPanningCallback(NULL);
-            tTimer = 0;
-            tState = 1;
-            PlaySE(SE_RAIN);
-            PlaySE(SE_RAIN_STOP);
-            PlaySE(SE_THUNDERSTORM_STOP);
-            DrawWholeMapView();
-            DestroyTask(taskId);
-            UnlockPlayerFieldControls();
-        }
-        break;
-    }
-}
-
+#undef tState
+#undef tTimer
+#undef tTaskId1
+#undef tTaskId2
 void ExecuteDOCKSSequence(void)
 {
 
     DrawWholeMapView();
     LockPlayerFieldControls();
-    CpuFastFill(0, gPlttBufferFaded, PLTT_SIZE);
-    CreateTask(Task_HandleDOCKSSequence, 0xA);
+    DrawWholeMapView();
+    UnlockPlayerFieldControls();
+    PlaySE(SE_M_SURF);
+    FadeInFromBlack();
 }
 
-void EndDOCKSSequence(u8 taskId)
-{
-    gTasks[taskId].func = Task_HandleDOCKSSequence;
-}
+ 
+
+
+ 
+
 
 bool8 TrySetPortholeWarpDestination(void)
 {
