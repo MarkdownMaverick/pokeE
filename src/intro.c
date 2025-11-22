@@ -12,6 +12,8 @@
 #include "load_save.h"
 #include "save.h"
 #include "new_game.h"
+#include "main_menu.h"
+#include "event_data.h"
 #include "m4a.h"
 #include "random.h"
 #include "decompress.h"
@@ -1046,7 +1048,7 @@ void MainCB2_Intro(void)
     BuildOamBuffer();
     UpdatePaletteFade();
     if (gMain.newKeys != 0 && !gPaletteFade.active)
-        SetMainCallback2(MainCB2_EndIntro);
+        SetMainCallback2(CB2_InitTitleScreen);
     else if (gIntroFrameCounter != -1)
         gIntroFrameCounter++;
 }
@@ -1073,7 +1075,7 @@ static u8 SetUpCopyrightScreen(void)
 {
     switch (gMain.state)
     {
-    case COPYRIGHT_INITIALIZE:
+    case 0:
         SetVBlankCallback(NULL);
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
@@ -1102,16 +1104,12 @@ static u8 SetUpCopyrightScreen(void)
         REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON;
         SetSerialCallback(SerialCB_CopyrightScreen);
         GameCubeMultiBoot_Init(&gMultibootProgramStruct);
-    // REG_DISPCNT needs to be overwritten the second time, because otherwise the intro won't show up on VBA 1.7.2 and John GBA Lite emulators.
-    // The REG_DISPCNT overwrite is NOT needed in m-GBA, No$GBA, VBA 1.8.0, My Boy and Pizza Boy GBA emulators.
-    case COPYRIGHT_EMULATOR_BLEND:
-        REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON;
     default:
         UpdatePaletteFade();
         gMain.state++;
         GameCubeMultiBoot_Main(&gMultibootProgramStruct);
         break;
-    case COPYRIGHT_START_FADE:
+    case 140:
         GameCubeMultiBoot_Main(&gMultibootProgramStruct);
         if (gMultibootProgramStruct.gcmb_field_2 != 1)
         {
@@ -1119,16 +1117,11 @@ static u8 SetUpCopyrightScreen(void)
             gMain.state++;
         }
         break;
-    case COPYRIGHT_START_INTRO:
+    case 141:
         if (UpdatePaletteFade())
             break;
-#if EXPANSION_INTRO == TRUE
-        SetMainCallback2(CB2_ExpansionIntro);
-        CreateTask(Task_HandleExpansionIntro, 0);
-#else
         CreateTask(Task_Scene1_Load, 0);
-        SetMainCallback2(MainCB2_Intro);
-#endif
+        SetMainCallback2(CB2_InitTitleScreen);
         if (gMultibootProgramStruct.gcmb_field_2 != 0)
         {
             if (gMultibootProgramStruct.gcmb_field_2 == 2)
@@ -1217,8 +1210,8 @@ void Task_Scene1_Load(u8 taskId)
 
 static void Task_Scene1_FadeIn(u8 taskId)
 {
-    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-    SetVBlankCallback(VBlankCB_Intro);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0, RGB_WHITEALPHA);
+    SetVBlankCallback(CB2_InitTitleScreen);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG_ALL_ON | DISPCNT_OBJ_ON);
     gTasks[taskId].func = Task_Scene1_WaterDrops;
     gIntroFrameCounter = 0;

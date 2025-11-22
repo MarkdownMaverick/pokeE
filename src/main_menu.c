@@ -61,8 +61,6 @@ static void Task_HandleMainMenuInput(u8);
 static void Task_HandleMainMenuAPressed(u8);
 static void Task_HandleMainMenuBPressed(u8);
 static void Task_NewGameBirchSpeech_Init(u8);
-static void Task_DisplayMainMenuInvalidActionError(u8);
- 
 
 static void LoadMainMenuWindowFrameTiles(u8, u16);
 static void DrawMainMenuWindowBorder(const struct WindowTemplate *, u16);
@@ -871,48 +869,7 @@ gPlttBufferUnfaded[0] = RGB_BLACK;
 gPlttBufferFaded[0] = RGB_BLACK;
 gTasks[taskId].func = Task_NewGameBirchSpeech_Init;
 break;
-case ACTION_CONTINUE:
-gPlttBufferUnfaded[0] = RGB_BLACK;
-gPlttBufferFaded[0] = RGB_BLACK;
-SetMainCallback2(CB2_ContinueSavedGame);
-DestroyTask(taskId);
-break;
-case ACTION_OPTION:
-gMain.savedCallback = CB2_ReinitMainMenu;
-SetMainCallback2(CB2_InitOptionMenu);
-DestroyTask(taskId);
-break;
-case ACTION_MYSTERY_GIFT:
-SetMainCallback2(CB2_InitMysteryGift);
-DestroyTask(taskId);
-break;
-case ACTION_MYSTERY_EVENTS:
-SetMainCallback2(CB2_InitMysteryEventMenu);
-DestroyTask(taskId);
-break;
-case ACTION_EREADER:
-SetMainCallback2(CB2_InitEReader);
-DestroyTask(taskId);
-break;
-case ACTION_INVALID:
-gTasks[taskId].tCurrItem = 0;
-gTasks[taskId].func = Task_DisplayMainMenuInvalidActionError;
-gPlttBufferUnfaded[BG_PLTT_ID(15) + 1] = RGB_WHITE;
-gPlttBufferFaded[BG_PLTT_ID(15) + 1] = RGB_WHITE;
-SetGpuReg(REG_OFFSET_BG2HOFS, 0);
-SetGpuReg(REG_OFFSET_BG2VOFS, 0);
-SetGpuReg(REG_OFFSET_BG1HOFS, 0);
-SetGpuReg(REG_OFFSET_BG1VOFS, 0);
-SetGpuReg(REG_OFFSET_BG0HOFS, 0);
-SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-return;
 }
-FreeAllWindowBuffers();
-if (action != ACTION_OPTION)
-sCurrItemAndOptionMenuCheck = 0;
-else
-sCurrItemAndOptionMenuCheck |= OPTION_MENU_FLAG; // entering the options menu
 }
 }
 
@@ -929,44 +886,7 @@ DestroyTask(taskId);
 }
 }
 
-static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
-{
-switch (gTasks[taskId].tCurrItem)
-{
-case 0:
-FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
-switch (gTasks[taskId].tMenuType)
-{
-case 0:
-CreateMainMenuErrorWindow(gText_WirelessNotConnected);
-break;
-case 1:
-CreateMainMenuErrorWindow(gText_MysteryGiftCantUse);
-break;
-case 2:
-CreateMainMenuErrorWindow(gText_MysteryEventsCantUse);
-break;
-}
-gTasks[taskId].tCurrItem++;
-break;
-case 1:
-if (!gPaletteFade.active)
-gTasks[taskId].tCurrItem++;
-break;
-case 2:
-RunTextPrinters();
-if (!IsTextPrinterActive(7))
-gTasks[taskId].tCurrItem++;
-break;
-case 3:
-if (JOY_NEW(A_BUTTON | B_BUTTON))
-{
-PlaySE(SE_SELECT);
-BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-gTasks[taskId].func = Task_HandleMainMenuBPressed;
-}
-}
-}
+
 
 #undef tMenuType
 #undef tCurrItem
@@ -1074,19 +994,15 @@ break;
 
 static void Task_NewGameBirchSpeech_Init(u8 taskId)
 {
-
 gSaveBlock2Ptr->playerGender = 0;
 StringCopy(gSaveBlock2Ptr->playerName, COMPOUND_STRING("KAI"));
+SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+BeginNormalPaletteFade(PALETTES_OBJECTS, 0, 0, 16, RGB_WHITEALPHA);
+FreeAllWindowBuffers();
+FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
+ResetAllPicSprites();
 SetMainCallback2(CB2_NewGame);
-
-}
-
-
-
-
-
-
-
+DestroyTask(taskId);}
 
 
 #undef tPlayerSpriteId
@@ -1096,38 +1012,17 @@ SetMainCallback2(CB2_NewGame);
 #undef tLotadSpriteId
 #undef tBrendanSpriteId
 #undef tMaySpriteId
-
-#define tMainTask data[0]
-#define tAlphaCoeff1 data[1]
-#define tAlphaCoeff2 data[2]
-#define tDelay data[3]
-#define tDelayTimer data[4]
-#undef tMainTask
-#undef tAlphaCoeff1
-#undef tAlphaCoeff2
-#undef tDelay
-#undef tDelayTimer
-
 #undef tIsDoneFadingSprites
-
 #define tMainTask data[0]
 #define tPalIndex data[1]
 #define tDelayBefore data[2]
 #define tDelay data[3]
 #define tDelayTimer data[4]
-
-
-
-
-
-
 #undef tMainTask
 #undef tPalIndex
 #undef tDelayBefore
 #undef tDelay
 #undef tDelayTimer
-
-
 
 static void CreateMainMenuErrorWindow(const u8 *str)
 {
@@ -1241,5 +1136,3 @@ void CreateYesNoMenuParameterized(u8 x, u8 y, u16 baseTileNum, u16 baseBlock, u8
 struct WindowTemplate template = CreateWindowTemplate(0, x + 1, y + 1, 5, 4, winPalNum, baseBlock);
 CreateYesNoMenu(&template, baseTileNum, yesNoPalNum, 0);
 }
-
-
